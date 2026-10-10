@@ -1,0 +1,1960 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RSK TRADERS IMPORT AND EXPORTS | Global Sourcing & Trade Solutions</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* Mobile-Safe Viewport Reset (Eliminate Horizontal Overflow & Right-Side Whitespace) */
+    html, body {
+      overflow-x: hidden !important;
+      max-width: 100% !important;
+      width: 100% !important;
+      position: relative;
+    }
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    /* Continuous Marquee Scrolling */
+    @keyframes marqueeScroll {
+      0% { transform: translate3d(0, 0, 0); }
+      100% { transform: translate3d(-50%, 0, 0); }
+    }
+    .animate-marquee {
+      display: flex !important;
+      width: max-content !important;
+      animation: marqueeScroll 22s linear infinite !important;
+      will-change: transform;
+    }
+    .animate-marquee:hover {
+      animation-play-state: paused !important;
+    }
+
+    /* Splash Screen Logo Zoom Spring Bounce */
+    @keyframes rskZoomInOut {
+      0% { transform: scale(0.2); opacity: 0; }
+      40% { transform: scale(1.25); opacity: 1; }
+      70% { transform: scale(0.92); }
+      100% { transform: scale(1); opacity: 1; }
+    }
+    .force-zoom-logo {
+      display: inline-block !important;
+      animation: rskZoomInOut 1.2s cubic-bezier(0.25, 1, 0.5, 1) forwards !important;
+      will-change: transform, opacity;
+      transform-origin: center center;
+    }
+
+    /* Progress Bar Fill */
+    @keyframes barFill {
+      0% { width: 0%; }
+      100% { width: 100%; }
+    }
+    .splash-bar-fill {
+      display: block !important;
+      height: 100% !important;
+      animation: barFill 1.5s cubic-bezier(0.4, 0, 0.2, 1) forwards !important;
+    }
+
+    /* Button Light Shine Sweep */
+    @keyframes rskShineSweepAnim {
+      0% { transform: translateX(-150%) skewX(-20deg); }
+      40%, 100% { transform: translateX(350%) skewX(-20deg); }
+    }
+    .shine-btn-container {
+      position: relative !important;
+      overflow: hidden !important;
+    }
+    .animate-shine {
+      position: absolute !important;
+      top: -20% !important;
+      left: 0 !important;
+      width: 45% !important;
+      height: 140% !important;
+      background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.7) 50%, rgba(255,255,255,0) 100%) !important;
+      animation: rskShineSweepAnim 2.8s ease-in-out infinite !important;
+      pointer-events: none !important;
+      z-index: 10 !important;
+    }
+
+    /* Cards & Hovers */
+    .interactive-card {
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
+                  box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
+                  border-color 0.3s ease !important;
+      will-change: transform, box-shadow;
+    }
+    .interactive-card:hover {
+      transform: translateY(-8px) scale(1.015) !important;
+      box-shadow: 0 20px 35px -8px rgba(2, 132, 199, 0.25), 0 0 15px 0 rgba(2, 132, 199, 0.12) !important;
+      border-color: rgba(2, 132, 199, 0.6) !important;
+    }
+
+    .zoom-img {
+      transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.5s ease !important;
+      will-change: transform;
+    }
+    .group:hover .zoom-img,
+    .interactive-card:hover .zoom-img {
+      transform: scale(1.1) !important;
+    }
+
+    @keyframes floatAnim {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-8px); }
+    }
+    .animate-float {
+      animation: floatAnim 3.5s ease-in-out infinite !important;
+      will-change: transform;
+    }
+
+    /* Scroll Reveal Suite */
+    .reveal-base {
+      opacity: 0;
+      transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1), 
+                  transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+      will-change: opacity, transform;
+    }
+    .reveal-up { transform: translate3d(0, 36px, 0); }
+    .reveal-left { transform: translate3d(-45px, 0, 0); }
+    .reveal-right { transform: translate3d(45px, 0, 0); }
+    .reveal-zoom { transform: scale(0.92) translate3d(0, 20px, 0); }
+
+    .reveal-active {
+      opacity: 1 !important;
+      transform: translate3d(0, 0, 0) scale(1) !important;
+    }
+
+    .delay-100 { transition-delay: 100ms; }
+    .delay-150 { transition-delay: 150ms; }
+    .delay-200 { transition-delay: 200ms; }
+    .delay-250 { transition-delay: 250ms; }
+    .delay-300 { transition-delay: 300ms; }
+    .delay-350 { transition-delay: 350ms; }
+    .delay-400 { transition-delay: 400ms; }
+
+    #splashScreen {
+      opacity: 1;
+      visibility: visible;
+      transition: opacity 0.45s ease, visibility 0.45s ease;
+    }
+    #splashScreen.hide-splash {
+      opacity: 0 !important;
+      visibility: hidden !important;
+      pointer-events: none !important;
+    }
+
+    .glass-card {
+      background: rgba(255, 255, 255, 0.94);
+      backdrop-filter: blur(14px);
+      border: 1px solid rgba(226, 232, 240, 0.8);
+    }
+    .hero-gradient {
+      position: relative;
+      background: linear-gradient(135deg, rgba(15, 23, 42, 0.92) 0%, rgba(15, 23, 42, 0.82) 40%, rgba(2, 6, 23, 0.88) 100%),
+                  url('assets/hero-cargo.jpg') center center / cover no-repeat;
+    }
+    .gold-badge {
+      background: linear-gradient(135deg, #D97706 0%, #F59E0B 100%);
+    }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans antialiased selection:bg-sky-500 selection:text-white min-h-screen overflow-x-hidden w-full max-w-full">
+
+  <!-- SPLASH SCREEN -->
+  <div id="splashScreen" style="position: fixed; inset: 0; z-index: 99999; display: flex; flex-direction: column; align-items: center; justify-content: center; background-color: #ffffff; user-select: none;">
+    <div style="display: flex; flex-direction: column; align-items: center; text-align: center;">
+      <div class="force-zoom-logo" style="margin-bottom: 24px;">
+        <img 
+          src="assets/logo.jpg" 
+          alt="RSK Traders Logo" 
+          onerror="this.onerror=null; this.src='https://placehold.co/160x160/0284c7/ffffff?text=RSK';" 
+          style="width: 140px; height: 140px; object-fit: contain; border-radius: 20px; display: block; box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);"
+        />
+      </div>
+      <h1 style="font-size: 26px; font-weight: 900; color: #0f172a; letter-spacing: -0.5px; margin: 0; line-height: 1.2;">
+        RSK TRADERS
+      </h1>
+      <p style="font-size: 13px; font-weight: 700; color: #d97706; text-transform: uppercase; letter-spacing: 2px; margin-top: 6px;">
+        Import & Exports
+      </p>
+      <div style="width: 160px; height: 4px; background-color: #f1f5f9; border-radius: 9999px; margin-top: 24px; overflow: hidden;">
+        <div class="splash-bar-fill" style="height: 100%; background: linear-gradient(90deg, #0284c7, #14b8a6, #f59e0b); border-radius: 9999px;"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOP BAR -->
+  <header class="bg-slate-950 text-slate-300 text-xs py-2 px-4 border-b border-slate-800 w-full max-w-full overflow-hidden">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-2">
+      <div class="flex items-center gap-3 sm:gap-4 flex-wrap justify-center md:justify-start text-center">
+        <span class="inline-flex items-center gap-1 text-amber-400 font-semibold tracking-wide">
+          <svg class="w-4 h-4 text-emerald-400 animate-pulse shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+          IEC: ABKFR3824J | GST: 33ABKFR3824J1Z1
+        </span>
+        <span class="hidden md:inline text-slate-600">|</span>
+        <span class="text-slate-400">Est. 2024 • Trichy, Tamil Nadu, India</span>
+      </div>
+      <div class="flex items-center gap-2.5 sm:gap-4 flex-wrap justify-center text-center">
+        <a href="tel:+916382380563" class="hover:text-amber-400 transition-colors flex items-center gap-1">
+          <svg class="w-3.5 h-3.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+          +91 63823 80563
+        </a>
+        <a href="mailto:rsktraders2024@gmail.com" class="hover:text-amber-400 transition-colors flex items-center gap-1">
+          <svg class="w-3.5 h-3.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+          rsktraders2024@gmail.com
+        </a>
+        <span class="bg-emerald-500/20 text-emerald-400 px-2 py-0.5 rounded-full font-medium text-[10px]">24/7 Support</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- NAVIGATION BAR -->
+  <nav class="sticky top-0 z-50 bg-white/90 backdrop-blur-xl border-b border-slate-200/80 shadow-sm transition-all duration-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-20">
+        
+        <!-- Brand Logo -->
+        <a href="#home" class="flex items-center gap-3.5 group select-none">
+          <div class="relative flex-shrink-0 transition-transform duration-300 group-hover:scale-105">
+            <img 
+              src="assets/logo.jpg" 
+              alt="RSK Traders Logo" 
+              onerror="this.onerror=null; this.src='https://placehold.co/48x48/0284c7/ffffff?text=RSK';" 
+              class="h-11 w-11 object-contain rounded-xl p-0.5 border border-slate-200 shadow-sm bg-white"
+            >
+            <span class="absolute -bottom-0.5 -right-0.5 w-3 h-3 bg-emerald-500 border-2 border-white rounded-full"></span>
+          </div>
+          <div>
+            <div class="font-extrabold text-slate-900 text-lg tracking-tight leading-none group-hover:text-sky-600 transition-colors">
+              RSK TRADERS
+            </div>
+            <div class="text-[10px] font-bold text-slate-400 tracking-wider uppercase mt-1 flex items-center gap-1.5">
+              <span>Import & Exports</span>
+              <span class="w-1 h-1 rounded-full bg-slate-300"></span>
+              <span class="text-emerald-600 font-semibold">Active</span>
+            </div>
+          </div>
+        </a>
+
+        <!-- Desktop Navigation Links -->
+        <div class="hidden xl:flex items-center gap-1.5 text-[13px] font-semibold text-slate-600">
+          <a href="#home" class="relative px-3 py-2 rounded-lg hover:text-sky-600 hover:bg-sky-50/70 transition-all duration-200">Home</a>
+          <a href="#about" class="relative px-3 py-2 rounded-lg hover:text-sky-600 hover:bg-sky-50/70 transition-all duration-200">About</a>
+          <a href="#leadership" class="relative px-3 py-2 rounded-lg hover:text-sky-600 hover:bg-sky-50/70 transition-all duration-200">Leadership</a>
+          <a href="#services" class="relative px-3 py-2 rounded-lg hover:text-sky-600 hover:bg-sky-50/70 transition-all duration-200">Services</a>
+          <a href="#products" class="relative px-3 py-2 rounded-lg hover:text-sky-600 hover:bg-sky-50/70 transition-all duration-200">Products</a>
+          <a href="#industries" class="relative px-3 py-2 rounded-lg hover:text-sky-600 hover:bg-sky-50/70 transition-all duration-200">Industries</a>
+          <a href="#process" class="relative px-3 py-2 rounded-lg hover:text-sky-600 hover:bg-sky-50/70 transition-all duration-200">Process</a>
+          <a href="#projects" class="relative px-3 py-2 rounded-lg hover:text-sky-600 hover:bg-sky-50/70 transition-all duration-200">Initiatives</a>
+          <a href="#contact" class="relative px-3 py-2 rounded-lg hover:text-sky-600 hover:bg-sky-50/70 transition-all duration-200">Contact</a>
+        </div>
+
+        <!-- Right Quick Action -->
+        <div class="hidden sm:flex items-center gap-3">
+          <button onclick="openQuoteModal()" class="relative overflow-hidden px-5 py-2.5 rounded-xl bg-gradient-to-r from-sky-500 to-teal-500 hover:from-sky-400 hover:to-teal-400 text-slate-950 font-bold text-xs shadow-md shadow-sky-500/20 hover:shadow-lg hover:scale-105 active:scale-95 transition-all flex items-center gap-2 group">
+            <span>Get Quote</span>
+            <svg class="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+          </button>
+        </div>
+
+        <!-- Mobile Menu Toggle Button -->
+        <button 
+          id="menuToggleBtn" 
+          onclick="toggleMobileMenu()" 
+          aria-label="Toggle Navigation Menu" 
+          class="xl:hidden p-2.5 rounded-xl text-slate-700 hover:bg-slate-100 border border-slate-200 transition-all active:scale-95 flex items-center justify-center"
+        >
+          <svg id="hamburgerIcon" class="w-5 h-5 block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+          <svg id="closeIcon" class="w-5 h-5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+        </button>
+
+      </div>
+
+      <!-- Mobile Navigation Drawer -->
+      <div id="mobileMenu" class="hidden xl:hidden pb-6 pt-2 border-t border-slate-100 space-y-1.5 text-sm font-semibold text-slate-700">
+        <div class="grid grid-cols-2 gap-1.5 pt-2">
+          <a href="#home" onclick="toggleMobileMenu()" class="px-3.5 py-2.5 rounded-xl hover:bg-sky-50 hover:text-sky-700 transition-colors">Home</a>
+          <a href="#about" onclick="toggleMobileMenu()" class="px-3.5 py-2.5 rounded-xl hover:bg-sky-50 hover:text-sky-700 transition-colors">About Us</a>
+          <a href="#leadership" onclick="toggleMobileMenu()" class="px-3.5 py-2.5 rounded-xl hover:bg-sky-50 hover:text-sky-700 transition-colors">Leadership</a>
+          <a href="#services" onclick="toggleMobileMenu()" class="px-3.5 py-2.5 rounded-xl hover:bg-sky-50 hover:text-sky-700 transition-colors">Services</a>
+          <a href="#products" onclick="toggleMobileMenu()" class="px-3.5 py-2.5 rounded-xl hover:bg-sky-50 hover:text-sky-700 transition-colors">Products</a>
+          <a href="#industries" onclick="toggleMobileMenu()" class="px-3.5 py-2.5 rounded-xl hover:bg-sky-50 hover:text-sky-700 transition-colors">Industries</a>
+          <a href="#process" onclick="toggleMobileMenu()" class="px-3.5 py-2.5 rounded-xl hover:bg-sky-50 hover:text-sky-700 transition-colors">Process</a>
+          <a href="#projects" onclick="toggleMobileMenu()" class="px-3.5 py-2.5 rounded-xl hover:bg-sky-50 hover:text-sky-700 transition-colors">Initiatives</a>
+          <a href="#contact" onclick="toggleMobileMenu()" class="col-span-2 px-3.5 py-2.5 rounded-xl hover:bg-sky-50 hover:text-sky-700 transition-colors">Contact Us</a>
+        </div>
+        
+        <div class="pt-3">
+          <button onclick="toggleMobileMenu(); openQuoteModal();" class="w-full py-3 rounded-xl bg-sky-600 hover:bg-sky-700 text-white font-bold text-xs shadow-md transition-colors flex items-center justify-center gap-2">
+            <span>Request Trade Quote</span>
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </nav>
+
+  <!-- MARQUEE TICKER BANNER -->
+  <div class="bg-slate-900 text-amber-300 py-2.5 overflow-hidden border-b border-slate-800 text-xs font-semibold tracking-wider uppercase relative w-full max-w-full select-none">
+    <div class="animate-marquee whitespace-nowrap flex gap-12">
+      <div class="flex items-center gap-12 shrink-0 pr-12">
+        <span class="flex items-center gap-2">🌐 Connecting Markets. Solving Challenges. Delivering Globally.</span>
+        <span class="flex items-center gap-2">🚀 WE CONNECT. WE SOLVE. WE DELIVER.</span>
+        <span class="flex items-center gap-2">🌱 SOURCE. CONNECT. EXPORT. GROW.</span>
+        <span class="flex items-center gap-2">✈️ Air & Sea Freight Logistics Support 24/7</span>
+        <span class="flex items-center gap-2">🌍 Target Markets: UAE | UK | USA | Worldwide</span>
+      </div>
+      <div class="flex items-center gap-12 shrink-0 pr-12">
+        <span class="flex items-center gap-2">🌐 Connecting Markets. Solving Challenges. Delivering Globally.</span>
+        <span class="flex items-center gap-2">🚀 WE CONNECT. WE SOLVE. WE DELIVER.</span>
+        <span class="flex items-center gap-2">🌱 SOURCE. CONNECT. EXPORT. GROW.</span>
+        <span class="flex items-center gap-2">✈️ Air & Sea Freight Logistics Support 24/7</span>
+        <span class="flex items-center gap-2">🌍 Target Markets: UAE | UK | USA | Worldwide</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- HERO SECTION WITH GLOBAL FREIGHT BACKGROUND (CARGO VESSEL & AIRPLANE) -->
+  <section id="home" class="hero-gradient text-white py-20 lg:py-28 relative overflow-hidden bg-slate-950">
+    <!-- Full Background Image Layer -->
+    <div class="absolute inset-0 z-0">
+      <img 
+        src="assets/hero-cargo.jpg" 
+        alt="RSK Traders Global Air & Sea Cargo Logistics Background" 
+        class="w-full h-full object-cover object-center filter brightness-[0.42] contrast-[1.12]"
+      >
+      <!-- Contrast & Lighting Overlays so text remains 100% sharp & readable -->
+      <div class="absolute inset-0 bg-gradient-to-r from-slate-950/95 via-slate-950/80 to-slate-900/65"></div>
+      <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-slate-950/70"></div>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div class="grid lg:grid-cols-12 gap-12 items-center">
+        
+        <div class="lg:col-span-7 space-y-6 reveal-base reveal-left">
+          <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-800/80 border border-slate-700 text-amber-400 text-xs font-semibold animate-float">
+            <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-ping"></span>
+            Premier Indian Export & Import Partner
+          </div>
+
+          <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight">
+            Connecting Markets.<br>
+            <span class="text-transparent bg-clip-text bg-gradient-to-r from-sky-400 via-teal-300 to-amber-300">
+              Solving Challenges.<br>Delivering Globally.
+            </span>
+          </h1>
+
+          <p class="text-slate-300 text-base sm:text-lg max-w-2xl leading-relaxed">
+            RSK TRADERS connects Indian products with international markets. We specialize in quality sourcing, exporting, transparent documentation, competitive pricing, and end-to-end logistics solutions.
+          </p>
+
+          <div class="pt-4 flex flex-wrap gap-4 items-center">
+            <a href="#services" onclick="smoothScrollTo('#services', event)" class="relative overflow-hidden px-8 py-4 rounded-xl bg-gradient-to-r from-sky-400 via-sky-500 to-teal-400 hover:from-sky-300 hover:to-teal-300 text-slate-950 font-extrabold text-sm tracking-wide shadow-xl shadow-sky-500/30 hover:shadow-2xl hover:shadow-sky-400/50 hover:scale-105 active:scale-95 transition-all duration-300 flex items-center gap-2.5 group cursor-pointer">
+              <div class="animate-shine"></div>
+              <span>Explore Services</span>
+              <svg class="w-4 h-4 text-slate-950 group-hover:translate-x-1.5 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+            </a>
+            <button onclick="openQuoteModal()" class="px-7 py-3.5 rounded-xl bg-slate-800 hover:bg-slate-700 hover:scale-105 active:scale-95 text-white font-bold text-sm border border-slate-700 transition flex items-center gap-2">
+              Get Trade Proposal
+            </button>
+          </div>
+
+          <div class="pt-6 border-t border-slate-800/80 grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 text-xs text-slate-300">
+            <div class="interactive-card p-3 rounded-xl bg-slate-900/60 border border-slate-800">
+              <div class="font-bold text-white text-base">SOURCE</div>
+              <div class="text-slate-400 mt-0.5">Reliable Supplier Verification</div>
+            </div>
+            <div class="interactive-card p-3 rounded-xl bg-slate-900/60 border border-slate-800">
+              <div class="font-bold text-white text-base">CONNECT</div>
+              <div class="text-slate-400 mt-0.5">India to Global Buyers</div>
+            </div>
+            <div class="interactive-card p-3 rounded-xl bg-slate-900/60 border border-slate-800">
+              <div class="font-bold text-white text-base">GROW</div>
+              <div class="text-slate-400 mt-0.5">Seamless Trade Logistics</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="lg:col-span-5 reveal-base reveal-right delay-200">
+          <div class="glass-card interactive-card rounded-2xl p-6 sm:p-8 text-slate-800 shadow-2xl space-y-6">
+            <div class="flex justify-between items-center border-b border-slate-200 pb-4">
+              <div class="flex items-center gap-3">
+                <img 
+                  src="assets/logo.jpg" 
+                  alt="Logo" 
+                  onerror="this.onerror=null; this.src='https://placehold.co/48x48/0284c7/ffffff?text=RSK';" 
+                  class="w-12 h-12 object-contain rounded-lg shadow-sm"
+                >
+                <div>
+                  <span class="text-xs font-bold text-sky-700 uppercase tracking-wider">RSK TRADERS</span>
+                  <h3 class="text-lg font-bold text-slate-900 leading-tight">Global Trade Solutions</h3>
+                </div>
+              </div>
+              <span class="gold-badge text-white font-bold text-xs px-2.5 py-1 rounded-full shadow">Est. 2024</span>
+            </div>
+
+            <div class="space-y-4 text-sm">
+              <div class="flex items-start gap-3 p-2.5 rounded-xl hover:bg-slate-100/80 transition">
+                <div class="w-8 h-8 rounded-lg bg-sky-100 text-sky-700 flex items-center justify-center font-bold flex-shrink-0">1</div>
+                <div>
+                  <div class="font-semibold text-slate-900">Export & Import Sourcing</div>
+                  <div class="text-slate-600 text-xs">Direct procurement from manufacturers, farmers, and verified suppliers.</div>
+                </div>
+              </div>
+
+              <div class="flex items-start gap-3 p-2.5 rounded-xl hover:bg-slate-100/80 transition">
+                <div class="w-8 h-8 rounded-lg bg-teal-100 text-teal-700 flex items-center justify-center font-bold flex-shrink-0">2</div>
+                <div>
+                  <div class="font-semibold text-slate-900">Agri & Commodity Focus</div>
+                  <div class="text-slate-600 text-xs">Fresh vegetables, fruits, spices, rice, coconut products & curry leaves.</div>
+                </div>
+              </div>
+
+              <div class="flex items-start gap-3 p-2.5 rounded-xl hover:bg-slate-100/80 transition">
+                <div class="w-8 h-8 rounded-lg bg-amber-100 text-amber-700 flex items-center justify-center font-bold flex-shrink-0">3</div>
+                <div>
+                  <div class="font-semibold text-slate-900">Air & Sea Freight Logistics</div>
+                  <div class="text-slate-600 text-xs">Complete documentation, custom clearance & destination delivery.</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="bg-slate-100 p-4 rounded-xl space-y-2">
+              <div class="text-xs font-bold text-slate-700 uppercase">Primary Export Markets</div>
+              <div class="flex flex-wrap gap-2 text-xs">
+                <span class="bg-white border border-slate-300 font-semibold px-2.5 py-1 rounded-md text-slate-800 hover:scale-110 transition-transform cursor-default shadow-sm">🇦🇪 UAE</span>
+                <span class="bg-white border border-slate-300 font-semibold px-2.5 py-1 rounded-md text-slate-800 hover:scale-110 transition-transform cursor-default shadow-sm">🇬🇧 United Kingdom</span>
+                <span class="bg-white border border-slate-300 font-semibold px-2.5 py-1 rounded-md text-slate-800 hover:scale-110 transition-transform cursor-default shadow-sm">🇺🇸 United States</span>
+                <span class="bg-white border border-slate-300 font-semibold px-2.5 py-1 rounded-md text-slate-800 hover:scale-110 transition-transform cursor-default shadow-sm">🌐 Global Markets</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT US SECTION -->
+  <section id="about" class="py-24 bg-white relative overflow-hidden border-b border-slate-100">
+    <div class="absolute -top-24 left-1/2 -translate-x-1/2 w-[700px] h-[350px] bg-sky-100/40 rounded-full blur-3xl pointer-events-none"></div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div class="text-center max-w-3xl mx-auto space-y-4 reveal-base reveal-up">
+        <span class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-sky-50 border border-sky-200 text-sky-700 text-xs font-bold uppercase tracking-widest shadow-sm">
+          <span class="w-2 h-2 rounded-full bg-sky-500 animate-pulse"></span>
+          About RSK Traders
+        </span>
+        <h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight">
+          Your Trusted International Trade Gateway
+        </h2>
+        <p class="text-slate-600 text-base sm:text-lg leading-relaxed">
+          RSK Traders is an India-based Export & Import enterprise dedicated to connecting quality domestic produce and commodities with international markets. We collaborate with farmers, manufacturers, distributors, and overseas buyers to build transparent and resilient trade links.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-12">
+        <div class="interactive-card reveal-base reveal-zoom delay-100 p-5 rounded-2xl bg-slate-50 border border-slate-200/80 text-center">
+          <div class="text-2xl sm:text-3xl font-black text-sky-600">100%</div>
+          <div class="text-xs font-bold text-slate-700 mt-1 uppercase tracking-wider">Direct Origin Sourcing</div>
+          <p class="text-[11px] text-slate-500 mt-0.5">Verified farmers & mills</p>
+        </div>
+        <div class="interactive-card reveal-base reveal-zoom delay-200 p-5 rounded-2xl bg-slate-50 border border-slate-200/80 text-center">
+          <div class="text-2xl sm:text-3xl font-black text-teal-600">IEC & GST</div>
+          <div class="text-xs font-bold text-slate-700 mt-1 uppercase tracking-wider">Certified Exporter</div>
+          <p class="text-[11px] text-slate-500 mt-0.5">Full DGFT compliance</p>
+        </div>
+        <div class="interactive-card reveal-base reveal-zoom delay-300 p-5 rounded-2xl bg-slate-50 border border-slate-200/80 text-center">
+          <div class="text-2xl sm:text-3xl font-black text-amber-600">Global</div>
+          <div class="text-xs font-bold text-slate-700 mt-1 uppercase tracking-wider">Export Reach</div>
+          <p class="text-[11px] text-slate-500 mt-0.5">UAE • UK • USA & Worldwide</p>
+        </div>
+        <div class="interactive-card reveal-base reveal-zoom delay-400 p-5 rounded-2xl bg-slate-50 border border-slate-200/80 text-center">
+          <div class="text-2xl sm:text-3xl font-black text-emerald-600">24 / 7</div>
+          <div class="text-xs font-bold text-slate-700 mt-1 uppercase tracking-wider">Clearance Desk</div>
+          <p class="text-[11px] text-slate-500 mt-0.5">Air & Sea freight tracking</p>
+        </div>
+      </div>
+
+      <div class="grid lg:grid-cols-12 gap-8 mt-12 items-stretch">
+        <div class="lg:col-span-5 interactive-card reveal-base reveal-left delay-150 p-8 sm:p-10 rounded-3xl bg-gradient-to-br from-slate-950 via-slate-900 to-indigo-950 text-white shadow-xl border border-slate-800 flex flex-col justify-between relative overflow-hidden group">
+          <div class="absolute -right-12 -top-12 w-44 h-44 bg-amber-500/10 rounded-full blur-2xl group-hover:bg-amber-500/20 transition-all duration-500 pointer-events-none"></div>
+
+          <div class="space-y-5 relative z-10">
+            <div class="flex items-center justify-between">
+              <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-[11px] font-black uppercase tracking-wider bg-amber-400/10 text-amber-300 border border-amber-400/30">
+                Strategic Vision
+              </span>
+              <span class="text-2xl">🌍</span>
+            </div>
+
+            <h3 class="text-2xl sm:text-3xl font-extrabold text-white group-hover:text-amber-300 transition-colors">
+              Our Vision
+            </h3>
+            
+            <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
+              To build a trusted global trading network that bridges quality Indian producers with verified buyers across international markets, setting industry benchmarks in consistency, safety, and operational transparency.
+            </p>
+          </div>
+
+          <div class="pt-8 mt-6 border-t border-slate-800 relative z-10 flex flex-wrap gap-2 text-xs text-slate-400">
+            <span class="px-2.5 py-1 rounded-lg bg-slate-900/80 border border-slate-700 text-slate-300">Sustainable Trade</span>
+            <span class="px-2.5 py-1 rounded-lg bg-slate-900/80 border border-slate-700 text-slate-300">Global Supply Integrity</span>
+          </div>
+        </div>
+
+        <div class="lg:col-span-7 interactive-card reveal-base reveal-right delay-250 p-8 sm:p-10 rounded-3xl bg-slate-50 border border-slate-200 shadow-xl flex flex-col justify-between relative overflow-hidden">
+          <div class="space-y-6">
+            <div class="flex items-center justify-between">
+              <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-[11px] font-black uppercase tracking-wider bg-sky-100 text-sky-800 border border-sky-300">
+                Company Purpose
+              </span>
+              <span class="text-2xl">🎯</span>
+            </div>
+
+            <h3 class="text-2xl sm:text-3xl font-extrabold text-slate-900">
+              Our Mission
+            </h3>
+
+            <ul class="space-y-3 text-slate-700 text-sm sm:text-base">
+              <li class="flex items-start gap-3 p-2 rounded-xl hover:bg-white transition border border-transparent hover:border-slate-200">
+                <div class="w-6 h-6 rounded-lg bg-emerald-100 text-emerald-700 flex items-center justify-center shrink-0 mt-0.5">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>
+                </div>
+                <div>
+                  <span class="font-bold text-slate-900">Competitive Value:</span> Deliver certified premium quality commodities at fair market rates.
+                </div>
+              </li>
+              <li class="flex items-start gap-3 p-2 rounded-xl hover:bg-white transition border border-transparent hover:border-slate-200">
+                <div class="w-6 h-6 rounded-lg bg-emerald-100 text-emerald-700 flex items-center justify-center shrink-0 mt-0.5">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>
+                </div>
+                <div>
+                  <span class="font-bold text-slate-900">Verified Synergy:</span> Directly connect trustworthy local growers with genuine international buyers.
+                </div>
+              </li>
+              <li class="flex items-start gap-3 p-2 rounded-xl hover:bg-white transition border border-transparent hover:border-slate-200">
+                <div class="w-6 h-6 rounded-lg bg-emerald-100 text-emerald-700 flex items-center justify-center shrink-0 mt-0.5">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>
+                </div>
+                <div>
+                  <span class="font-bold text-slate-900">Problem-Solving:</span> Provide tailored solutions for complex sourcing, regulatory, and shipping hurdles.
+                </div>
+              </li>
+              <li class="flex items-start gap-3 p-2 rounded-xl hover:bg-white transition border border-transparent hover:border-slate-200">
+                <div class="w-6 h-6 rounded-lg bg-emerald-100 text-emerald-700 flex items-center justify-center shrink-0 mt-0.5">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>
+                </div>
+                <div>
+                  <span class="font-bold text-slate-900">End-to-End Execution:</span> Supervise temperature-controlled packing, DGFT filings, ICEGATE clearance, and door-to-door transit.
+                </div>
+              </li>
+              <li class="flex items-start gap-3 p-2 rounded-xl hover:bg-white transition border border-transparent hover:border-slate-200">
+                <div class="w-6 h-6 rounded-lg bg-emerald-100 text-emerald-700 flex items-center justify-center shrink-0 mt-0.5">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>
+                </div>
+                <div>
+                  <span class="font-bold text-slate-900">Lasting Partnerships:</span> Foster sustainable, transparent cross-border commercial relationships.
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES SECTION -->
+  <section id="services" class="py-24 bg-slate-50 border-t border-slate-200/80 relative overflow-hidden">
+    <div class="absolute top-0 right-10 w-96 h-96 bg-sky-100/50 rounded-full blur-3xl pointer-events-none"></div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div class="text-center max-w-3xl mx-auto space-y-3 reveal-base reveal-up">
+        <span class="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-sky-100 text-sky-800 text-xs font-bold tracking-widest uppercase border border-sky-300">
+          Our Core Capabilities
+        </span>
+        <h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight">
+          Comprehensive Trade Services
+        </h2>
+        <p class="text-slate-600 text-base leading-relaxed">
+          From farm-gate sourcing to destination port clearance, we provide end-to-end operational, regulatory, and supply chain solutions for global trade.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mt-14">
+        <!-- Service 1 -->
+        <div class="interactive-card reveal-base reveal-up delay-100 bg-white rounded-3xl p-8 border border-slate-200 shadow-md hover:border-sky-500 flex flex-col justify-between group">
+          <div class="space-y-4">
+            <div class="w-12 h-12 rounded-2xl bg-sky-50 text-sky-600 flex items-center justify-center text-2xl font-bold shadow-inner">
+              🌱
+            </div>
+            <h3 class="text-xl font-bold text-slate-900 group-hover:text-sky-600 transition-colors">
+              Direct Agricultural & Commodity Sourcing
+            </h3>
+            <p class="text-sm text-slate-600 leading-relaxed">
+              Direct procurement from verified farmers and production mills across India, eliminating multi-tier brokerage markups and ensuring complete crop traceability.
+            </p>
+            <ul class="text-xs text-slate-500 space-y-2 pt-2">
+              <li class="flex items-center gap-2">✓ Farm-gate harvest inspection</li>
+              <li class="flex items-center gap-2">✓ Verified producer pricing models</li>
+              <li class="flex items-center gap-2">✓ Seasonal crop availability tracking</li>
+            </ul>
+          </div>
+          <div class="pt-6 mt-6 border-t border-slate-100">
+            <button onclick="openQuoteModal('Agricultural & Food Sourcing')" class="w-full py-2.5 rounded-xl bg-slate-50 hover:bg-sky-50 text-sky-700 font-bold text-xs border border-slate-200 hover:border-sky-300 transition-colors">
+              Inquire Sourcing →
+            </button>
+          </div>
+        </div>
+
+        <!-- Service 2 -->
+        <div class="interactive-card reveal-base reveal-up delay-200 bg-white rounded-3xl p-8 border border-slate-200 shadow-md hover:border-teal-500 flex flex-col justify-between group">
+          <div class="space-y-4">
+            <div class="w-12 h-12 rounded-2xl bg-teal-50 text-teal-600 flex items-center justify-center text-2xl font-bold shadow-inner">
+              🔬
+            </div>
+            <h3 class="text-xl font-bold text-slate-900 group-hover:text-teal-600 transition-colors">
+              Quality Inspection & Lab Testing
+            </h3>
+            <p class="text-sm text-slate-600 leading-relaxed">
+              Pre-shipment sampling and testing via NABL accredited laboratories for chemical residue, moisture levels, microbial count, and destination purity compliance.
+            </p>
+            <ul class="text-xs text-slate-500 space-y-2 pt-2">
+              <li class="flex items-center gap-2">✓ Certificate of Analysis (CoA) generation</li>
+              <li class="flex items-center gap-2">✓ FSSAI, APEDA & global compliance checks</li>
+              <li class="flex items-center gap-2">✓ Express sample dispatch to overseas buyers</li>
+            </ul>
+          </div>
+          <div class="pt-6 mt-6 border-t border-slate-100">
+            <button onclick="openQuoteModal('Quality Inspection & Testing')" class="w-full py-2.5 rounded-xl bg-slate-50 hover:bg-teal-50 text-teal-700 font-bold text-xs border border-slate-200 hover:border-teal-300 transition-colors">
+              Request Lab Standards →
+            </button>
+          </div>
+        </div>
+
+        <!-- Service 3 -->
+        <div class="interactive-card reveal-base reveal-up delay-300 bg-white rounded-3xl p-8 border border-slate-200 shadow-md hover:border-indigo-500 flex flex-col justify-between group">
+          <div class="space-y-4">
+            <div class="w-12 h-12 rounded-2xl bg-indigo-50 text-indigo-600 flex items-center justify-center text-2xl font-bold shadow-inner">
+              ✈️
+            </div>
+            <h3 class="text-xl font-bold text-slate-900 group-hover:text-indigo-600 transition-colors">
+              Air & Ocean Freight Logistics
+            </h3>
+            <p class="text-sm text-slate-600 leading-relaxed">
+              Multi-modal cargo movement covering direct flight booking for perishable greens and ocean container freight (FCL/LCL) for bulk grains and commodity consignments.
+            </p>
+            <ul class="text-xs text-slate-500 space-y-2 pt-2">
+              <li class="flex items-center gap-2">✓ Same-day flight booking for fresh produce</li>
+              <li class="flex items-center gap-2">✓ Temperature-monitored reefer containers</li>
+              <li class="flex items-center gap-2">✓ Port-to-port and door delivery dispatch</li>
+            </ul>
+          </div>
+          <div class="pt-6 mt-6 border-t border-slate-100">
+            <button onclick="openQuoteModal('Air / Sea Freight Logistics')" class="w-full py-2.5 rounded-xl bg-slate-50 hover:bg-indigo-50 text-indigo-700 font-bold text-xs border border-slate-200 hover:border-indigo-300 transition-colors">
+              Check Freight Rates →
+            </button>
+          </div>
+        </div>
+
+        <!-- Service 4 -->
+        <div class="interactive-card reveal-base reveal-up delay-100 bg-white rounded-3xl p-8 border border-slate-200 shadow-md hover:border-amber-500 flex flex-col justify-between group">
+          <div class="space-y-4">
+            <div class="w-12 h-12 rounded-2xl bg-amber-50 text-amber-600 flex items-center justify-center text-2xl font-bold shadow-inner">
+              📦
+            </div>
+            <h3 class="text-xl font-bold text-slate-900 group-hover:text-amber-600 transition-colors">
+              Custom Packaging & Cold-Chain
+            </h3>
+            <p class="text-sm text-slate-600 leading-relaxed">
+              Export-grade packing protocols designed to preserve shelf-life, prevent transit damage, and satisfy international biosecurity standards.
+            </p>
+            <ul class="text-xs text-slate-500 space-y-2 pt-2">
+              <li class="flex items-center gap-2">✓ 5-ply export corrugated cartons & vacuum bags</li>
+              <li class="flex items-center gap-2">✓ ISPM-15 heat-treated fumigated pallets</li>
+              <li class="flex items-center gap-2">✓ GS1 barcoding and customized buyer labeling</li>
+            </ul>
+          </div>
+          <div class="pt-6 mt-6 border-t border-slate-100">
+            <button onclick="openQuoteModal('Packaging & Cold-Chain')" class="w-full py-2.5 rounded-xl bg-slate-50 hover:bg-amber-50 text-amber-700 font-bold text-xs border border-slate-200 hover:border-amber-300 transition-colors">
+              Packaging Specs →
+            </button>
+          </div>
+        </div>
+
+        <!-- Service 5 -->
+        <div class="interactive-card reveal-base reveal-up delay-200 bg-white rounded-3xl p-8 border border-slate-200 shadow-md hover:border-rose-500 flex flex-col justify-between group">
+          <div class="space-y-4">
+            <div class="w-12 h-12 rounded-2xl bg-rose-50 text-rose-600 flex items-center justify-center text-2xl font-bold shadow-inner">
+              📑
+            </div>
+            <h3 class="text-xl font-bold text-slate-900 group-hover:text-rose-600 transition-colors">
+              Customs Clearances & ICEGATE
+            </h3>
+            <p class="text-sm text-slate-600 leading-relaxed">
+              End-to-end clearance documentation, ITC (HS) code classification, electronic shipping bill generation on ICEGATE, and PQIS phytosanitary certificate issuance.
+            </p>
+            <ul class="text-xs text-slate-500 space-y-2 pt-2">
+              <li class="flex items-center gap-2">✓ Electronic shipping bill execution</li>
+              <li class="flex items-center gap-2">✓ Plant quarantine & PSC clearance filings</li>
+              <li class="flex items-center gap-2">✓ AD code registration & port documentation</li>
+            </ul>
+          </div>
+          <div class="pt-6 mt-6 border-t border-slate-100">
+            <button onclick="openQuoteModal('Customs Clearances & ICEGATE')" class="w-full py-2.5 rounded-xl bg-slate-50 hover:bg-rose-50 text-rose-700 font-bold text-xs border border-slate-200 hover:border-rose-300 transition-colors">
+              Clearance Support →
+            </button>
+          </div>
+        </div>
+
+        <!-- Service 6 -->
+        <div class="interactive-card reveal-base reveal-up delay-300 bg-white rounded-3xl p-8 border border-slate-200 shadow-md hover:border-emerald-500 flex flex-col justify-between group">
+          <div class="space-y-4">
+            <div class="w-12 h-12 rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center text-2xl font-bold shadow-inner">
+              🛡️
+            </div>
+            <h3 class="text-xl font-bold text-slate-900 group-hover:text-emerald-600 transition-colors">
+              DGFT, GST Clearing & Marine Cover
+            </h3>
+            <p class="text-sm text-slate-600 leading-relaxed">
+              Comprehensive regulatory advisory for SMEs entering foreign trade: DGFT portal management, export GST notice resolutions, and open marine transit insurance covers.
+            </p>
+            <ul class="text-xs text-slate-500 space-y-2 pt-2">
+              <li class="flex items-center gap-2">✓ DGFT IEC management & export incentives</li>
+              <li class="flex items-center gap-2">✓ GST refund error matching & notice clearance</li>
+              <li class="flex items-center gap-2">✓ Institute Cargo Clauses (ICC-A) insurance</li>
+            </ul>
+          </div>
+          <div class="pt-6 mt-6 border-t border-slate-100">
+            <button onclick="openQuoteModal('DGFT & Compliance Advisory')" class="w-full py-2.5 rounded-xl bg-slate-50 hover:bg-emerald-50 text-emerald-700 font-bold text-xs border border-slate-200 hover:border-emerald-300 transition-colors">
+              Advisory Desk →
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LEADERSHIP SECTION -->
+  <section id="leadership" class="py-20 bg-slate-900 text-white overflow-hidden">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto space-y-3 reveal-base reveal-up">
+        <span class="text-amber-400 font-bold text-xs uppercase tracking-widest bg-slate-800 px-3 py-1 rounded-full border border-slate-700">Executive Visionaries</span>
+        <h2 class="text-3xl sm:text-4xl font-extrabold">Leadership Team</h2>
+        <p class="text-slate-400 text-sm">Meet the driving force behind RSK TRADERS IMPORT AND EXPORTS.</p>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-8 max-w-3xl mx-auto mt-14">
+        <div class="interactive-card reveal-base reveal-zoom delay-150 bg-slate-800/90 rounded-2xl overflow-hidden border border-slate-700 shadow-xl hover:border-sky-500 flex flex-col items-center text-center p-6 sm:p-8 group cursor-pointer">
+          <div class="relative w-36 h-36 rounded-full p-1 bg-gradient-to-tr from-sky-400 via-teal-300 to-amber-400 shadow-lg mb-5 transition-transform duration-300 group-hover:scale-105">
+            <div class="w-full h-full rounded-full overflow-hidden bg-white">
+              <img 
+                src="assets/founder.jpg" 
+                alt="Founder" 
+                onerror="this.onerror=null; this.src='https://placehold.co/144x144/0284c7/ffffff?text=Founder';" 
+                class="w-full h-full object-cover object-top block transition-transform duration-500 ease-out group-hover:scale-110"
+              >
+            </div>
+          </div>
+
+          <span class="bg-amber-400/20 text-amber-300 font-extrabold text-[10px] px-3 py-0.5 rounded-full border border-amber-400/30 uppercase tracking-wider mb-2">Founder & Managing Director</span>
+          <h3 class="text-xl font-bold text-white group-hover:text-sky-300 transition-colors">Founder</h3>
+          <p class="text-slate-300 text-xs mt-2.5 leading-relaxed max-w-xs">
+            Steering RSK Traders' global strategy, international sourcing network, supplier partnerships, and commitment to delivering quality Indian commodities across world markets.
+          </p>
+          <div class="pt-5 mt-5 border-t border-slate-700/80 w-full flex justify-center gap-3 text-slate-400 text-xs">
+            <span class="flex items-center gap-1">🌐 Global Sourcing</span>
+            <span>•</span>
+            <span class="flex items-center gap-1">🤝 Trade Strategy</span>
+          </div>
+        </div>
+
+        <div class="interactive-card reveal-base reveal-zoom delay-300 bg-slate-800/90 rounded-2xl overflow-hidden border border-slate-700 shadow-xl hover:border-teal-500 flex flex-col items-center text-center p-6 sm:p-8 group cursor-pointer">
+          <div class="relative w-36 h-36 rounded-full p-1 bg-gradient-to-tr from-teal-400 via-emerald-300 to-cyan-400 shadow-lg mb-5 transition-transform duration-300 group-hover:scale-105">
+            <div class="w-full h-full rounded-full overflow-hidden bg-white">
+              <img 
+                src="./assets/co-founder.jpeg" 
+                alt="Co-Founder" 
+                onerror="this.onerror=null; this.src='https://placehold.co/144x144/14b8a6/ffffff?text=Co-Founder';" 
+                class="w-full h-full object-cover object-top block transition-transform duration-500 ease-out group-hover:scale-110"
+              >
+            </div>
+          </div>
+
+          <span class="bg-teal-400/20 text-teal-300 font-extrabold text-[10px] px-3 py-0.5 rounded-full border border-teal-400/30 uppercase tracking-wider mb-2">Co-Founder & Director of Operations</span>
+          <h3 class="text-xl font-bold text-white group-hover:text-teal-300 transition-colors">Co-Founder</h3>
+          <p class="text-slate-300 text-xs mt-2.5 leading-relaxed max-w-xs">
+            Overseeing operational logistics, freight dispatch, customs clearances, quality inspection protocols, and long-term client relation management.
+          </p>
+          <div class="pt-5 mt-5 border-t border-slate-700/80 w-full flex justify-center gap-3 text-slate-400 text-xs">
+            <span class="flex items-center gap-1">✈️ Supply Chain</span>
+            <span>•</span>
+            <span class="flex items-center gap-1">📜 Compliance</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- AGRICULTURAL PRODUCTS SHOWCASE -->
+  <section id="products" class="py-20 bg-slate-100 overflow-hidden">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 reveal-base reveal-up">
+        <div>
+          <span class="text-emerald-700 font-bold text-xs uppercase tracking-widest bg-emerald-100 px-3 py-1 rounded-full border border-emerald-300">Specialized Portfolio</span>
+          <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 mt-2">Agricultural & Food Products</h2>
+          <p class="text-slate-600 text-sm mt-1 max-w-xl">We specialize in sourcing and supplying selected premium agricultural commodities directly from verified Indian growers.</p>
+        </div>
+        <div class="text-xs text-slate-500 italic bg-white p-2.5 rounded-lg border border-slate-200 shadow-sm">
+          * Product availability and specifications vary according to seasonal cycles & standards.
+        </div>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-10">
+        <!-- Product 1 -->
+        <div class="interactive-card reveal-base reveal-up delay-100 rounded-2xl border border-slate-200 overflow-hidden bg-white shadow-sm flex flex-col justify-between group">
+          <div>
+            <div class="relative h-52 w-full overflow-hidden bg-slate-900">
+              <img 
+                src="./assets/vegetable.jpg" 
+                alt="Fresh Vegetables" 
+                class="zoom-img w-full h-full object-cover opacity-90"
+                loading="lazy"
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-slate-950/30 to-transparent flex flex-col justify-end p-5">
+                <span class="text-[11px] font-bold bg-white/20 backdrop-blur-md text-emerald-300 px-2.5 py-0.5 rounded-full w-max border border-white/10 uppercase tracking-wider">Fresh Crop Sourcing</span>
+                <h3 class="text-xl font-bold text-white mt-1">Fresh Vegetables</h3>
+              </div>
+            </div>
+            <div class="p-5 space-y-3">
+              <p class="text-xs text-slate-600 leading-relaxed">Onions, tomatoes, drumsticks, green chillies, okra, and seasonal vegetables sourced under strict temperature control.</p>
+              <div class="flex flex-wrap gap-1.5 text-[11px] font-semibold text-slate-700">
+                <span class="bg-slate-50 border border-slate-200 px-2 py-0.5 rounded">Sorting</span>
+                <span class="bg-slate-50 border border-slate-200 px-2 py-0.5 rounded">Cold Packaging</span>
+                <span class="bg-slate-50 border border-slate-200 px-2 py-0.5 rounded">Air Freight Ready</span>
+              </div>
+            </div>
+          </div>
+          <div class="p-5 pt-0">
+            <button onclick="openQuoteModal('Fresh Vegetables')" class="w-full py-2.5 bg-slate-50 hover:bg-sky-50 text-slate-700 hover:text-sky-700 rounded-xl text-xs font-bold border border-slate-200 hover:border-sky-300 transition-colors">
+              Request Sample & Rates →
+            </button>
+          </div>
+        </div>
+
+        <!-- Product 2 -->
+        <div class="interactive-card reveal-base reveal-up delay-200 rounded-2xl border border-slate-200 overflow-hidden bg-white shadow-sm flex flex-col justify-between group">
+          <div>
+            <div class="relative h-52 w-full overflow-hidden bg-slate-900">
+              <img 
+                src="./assets/fruit.jpg" 
+                alt="Fresh Fruits" 
+                class="zoom-img w-full h-full object-cover opacity-90"
+                loading="lazy"
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-slate-950/30 to-transparent flex flex-col justify-end p-5">
+                <span class="text-[11px] font-bold bg-white/20 backdrop-blur-md text-amber-300 px-2.5 py-0.5 rounded-full w-max border border-white/10 uppercase tracking-wider">Tropical Selection</span>
+                <h3 class="text-xl font-bold text-white mt-1">Fresh Fruits</h3>
+              </div>
+            </div>
+            <div class="p-5 space-y-3">
+              <p class="text-xs text-slate-600 leading-relaxed">Indian Mangoes, Cavendish Bananas, Pomegranates, Grapes, and Guavas packed for maximum global shelf life.</p>
+              <div class="flex flex-wrap gap-1.5 text-[11px] font-semibold text-slate-700">
+                <span class="bg-slate-50 border border-slate-200 px-2 py-0.5 rounded">Global Standards</span>
+                <span class="bg-slate-50 border border-slate-200 px-2 py-0.5 rounded">Phytosanitary Clean</span>
+              </div>
+            </div>
+          </div>
+          <div class="p-5 pt-0">
+            <button onclick="openQuoteModal('Fresh Fruits')" class="w-full py-2.5 bg-slate-50 hover:bg-sky-50 text-slate-700 hover:text-sky-700 rounded-xl text-xs font-bold border border-slate-200 hover:border-sky-300 transition-colors">
+              Request Sample & Rates →
+            </button>
+          </div>
+        </div>
+
+        <!-- Product 3 -->
+        <div class="interactive-card reveal-base reveal-up delay-300 rounded-2xl border border-slate-200 overflow-hidden bg-white shadow-sm flex flex-col justify-between group">
+          <div>
+            <div class="relative h-52 w-full overflow-hidden bg-slate-900">
+              <img 
+                src="./assets/speicies.jpg" 
+                alt="Indian Spices" 
+                class="zoom-img w-full h-full object-cover opacity-90"
+                loading="lazy"
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-slate-950/30 to-transparent flex flex-col justify-end p-5">
+                <span class="text-[11px] font-bold bg-white/20 backdrop-blur-md text-amber-300 px-2.5 py-0.5 rounded-full w-max border border-white/10 uppercase tracking-wider">Authentic Aromatics</span>
+                <h3 class="text-xl font-bold text-white mt-1">Indian Spices</h3>
+              </div>
+            </div>
+            <div class="p-5 space-y-3">
+              <p class="text-xs text-slate-600 leading-relaxed">Turmeric, Black Pepper, Cardamom, Cumin, Red Chilli powder, and Coriander sourced from prime spice regions.</p>
+              <div class="flex flex-wrap gap-1.5 text-[11px] font-semibold text-slate-700">
+                <span class="bg-slate-50 border border-slate-200 px-2 py-0.5 rounded">High Curcumin</span>
+                <span class="bg-slate-50 border border-slate-200 px-2 py-0.5 rounded">Custom Grinding</span>
+              </div>
+            </div>
+          </div>
+          <div class="p-5 pt-0">
+            <button onclick="openQuoteModal('Indian Spices')" class="w-full py-2.5 bg-slate-50 hover:bg-sky-50 text-slate-700 hover:text-sky-700 rounded-xl text-xs font-bold border border-slate-200 hover:border-sky-300 transition-colors">
+              Request Sample & Rates →
+            </button>
+          </div>
+        </div>
+
+        <!-- Product 4 -->
+        <div class="interactive-card reveal-base reveal-up delay-100 rounded-2xl border border-slate-200 overflow-hidden bg-white shadow-sm flex flex-col justify-between group">
+          <div>
+            <div class="relative h-52 w-full overflow-hidden bg-slate-900">
+              <img 
+                src="./assets/Rice.jpg" 
+                alt="Rice Commodities" 
+                class="zoom-img w-full h-full object-cover opacity-90"
+                loading="lazy"
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-slate-950/30 to-transparent flex flex-col justify-end p-5">
+                <span class="text-[11px] font-bold bg-white/20 backdrop-blur-md text-amber-300 px-2.5 py-0.5 rounded-full w-max border border-white/10 uppercase tracking-wider">Staple Grain</span>
+                <h3 class="text-xl font-bold text-white mt-1">Rice Commodities</h3>
+              </div>
+            </div>
+            <div class="p-5 space-y-3">
+              <p class="text-xs text-slate-600 leading-relaxed">Basmati Rice (Long Grain), Non-Basmati, Parboiled Rice, and Ponni Rice supplied in bulk export sacks.</p>
+              <div class="flex flex-wrap gap-1.5 text-[11px] font-semibold text-slate-700">
+                <span class="bg-slate-50 border border-slate-200 px-2 py-0.5 rounded">5kg / 20kg / 50kg Sacks</span>
+                <span class="bg-slate-50 border border-slate-200 px-2 py-0.5 rounded">Sea Container Bulk</span>
+              </div>
+            </div>
+          </div>
+          <div class="p-5 pt-0">
+            <button onclick="openQuoteModal('Rice Commodities')" class="w-full py-2.5 bg-slate-50 hover:bg-sky-50 text-slate-700 hover:text-sky-700 rounded-xl text-xs font-bold border border-slate-200 hover:border-sky-300 transition-colors">
+              Request Sample & Rates →
+            </button>
+          </div>
+        </div>
+
+        <!-- Product 5 -->
+        <div class="interactive-card reveal-base reveal-up delay-200 rounded-2xl border border-slate-200 overflow-hidden bg-white shadow-sm flex flex-col justify-between group">
+          <div>
+            <div class="relative h-52 w-full overflow-hidden bg-slate-900">
+              <img 
+                src="./assets/coconut.jpg" 
+                alt="Coconut Products" 
+                class="zoom-img w-full h-full object-cover opacity-90"
+                loading="lazy"
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-slate-950/30 to-transparent flex flex-col justify-end p-5">
+                <span class="text-[11px] font-bold bg-white/20 backdrop-blur-md text-amber-300 px-2.5 py-0.5 rounded-full w-max border border-white/10 uppercase tracking-wider">Natural Produce</span>
+                <h3 class="text-xl font-bold text-white mt-1">Coconut Products</h3>
+              </div>
+            </div>
+            <div class="p-5 space-y-3">
+              <p class="text-xs text-slate-600 leading-relaxed">Semi-husked Coconuts, Tender Coconut, Desiccated Coconut Powder, and Coir substrate products for trade.</p>
+              <div class="flex flex-wrap gap-1.5 text-[11px] font-semibold text-slate-700">
+                <span class="bg-slate-50 border border-slate-200 px-2 py-0.5 rounded">Weight Grading</span>
+                <span class="bg-slate-50 border border-slate-200 px-2 py-0.5 rounded">Moisture Controlled</span>
+              </div>
+            </div>
+          </div>
+          <div class="p-5 pt-0">
+            <button onclick="openQuoteModal('Coconut Products')" class="w-full py-2.5 bg-slate-50 hover:bg-sky-50 text-slate-700 hover:text-sky-700 rounded-xl text-xs font-bold border border-slate-200 hover:border-sky-300 transition-colors">
+              Request Sample & Rates →
+            </button>
+          </div>
+        </div>
+
+        <!-- Product 6 -->
+        <div class="interactive-card reveal-base reveal-up delay-300 rounded-2xl border border-slate-200 overflow-hidden bg-white shadow-sm flex flex-col justify-between group">
+          <div>
+            <div class="relative h-52 w-full overflow-hidden bg-slate-900">
+              <img 
+                src="./assets/curry.jpg" 
+                alt="Curry Leaves & Herbs" 
+                class="zoom-img w-full h-full object-cover opacity-90"
+                loading="lazy"
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-slate-950/30 to-transparent flex flex-col justify-end p-5">
+                <span class="text-[11px] font-bold bg-white/20 backdrop-blur-md text-emerald-300 px-2.5 py-0.5 rounded-full w-max border border-white/10 uppercase tracking-wider">Fresh Herb Freight</span>
+                <h3 class="text-xl font-bold text-white mt-1">Curry Leaves & Herbs</h3>
+              </div>
+            </div>
+            <div class="p-5 space-y-3">
+              <p class="text-xs text-slate-600 leading-relaxed">Fresh South Indian Curry Leaves, Moringa leaves, and culinary herbs air-freighted with rapid cold-chain handling.</p>
+              <div class="flex flex-wrap gap-1.5 text-[11px] font-semibold text-slate-700">
+                <span class="bg-slate-50 border border-slate-200 px-2 py-0.5 rounded">Same-day Flight</span>
+                <span class="bg-slate-50 border border-slate-200 px-2 py-0.5 rounded">Vacuum Sealed</span>
+              </div>
+            </div>
+          </div>
+          <div class="p-5 pt-0">
+            <button onclick="openQuoteModal('Curry Leaves & Herbs')" class="w-full py-2.5 bg-slate-50 hover:bg-sky-50 text-slate-700 hover:text-sky-700 rounded-xl text-xs font-bold border border-slate-200 hover:border-sky-300 transition-colors">
+              Request Sample & Rates →
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INDUSTRIES SECTION -->
+  <section id="industries" class="py-20 bg-slate-900 text-white relative overflow-hidden">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div class="text-center max-w-3xl mx-auto space-y-3 reveal-base reveal-up">
+        <span class="text-amber-400 font-bold text-xs uppercase tracking-widest bg-slate-800 px-3 py-1 rounded-full border border-slate-700">Multi-Sector Capabilities</span>
+        <h2 class="text-3xl sm:text-4xl font-extrabold">Industries We Serve</h2>
+        <p class="text-slate-400 text-sm">Empowering diverse business domains through verified Indian supply chains.</p>
+      </div>
+
+      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-7 gap-4 mt-12">
+        <div class="interactive-card reveal-base reveal-zoom delay-100 relative rounded-xl overflow-hidden border border-slate-700/80 hover:border-amber-400 group h-56 bg-slate-950 flex flex-col justify-end p-3.5 shadow-md">
+          <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=500&q=80" alt="Manufacturing" class="zoom-img absolute inset-0 w-full h-full object-cover opacity-60 group-hover:opacity-85" loading="lazy" />
+          <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent pointer-events-none"></div>
+          <div class="relative z-10 text-left">
+            <span class="text-[10px] uppercase font-bold tracking-wider text-amber-300 block mb-0.5 drop-shadow">Heavy & Light</span>
+            <div class="font-extrabold text-sm text-white group-hover:text-amber-400 transition-colors drop-shadow">Manufacturing</div>
+          </div>
+        </div>
+
+        <div class="interactive-card reveal-base reveal-zoom delay-150 relative rounded-xl overflow-hidden border border-slate-700/80 hover:border-amber-400 group h-56 bg-slate-950 flex flex-col justify-end p-3.5 shadow-md">
+          <img src="https://images.unsplash.com/photo-1558769132-cb1aea458c5e?auto=format&fit=crop&w=500&q=80" alt="Textiles" class="zoom-img absolute inset-0 w-full h-full object-cover opacity-60 group-hover:opacity-85" loading="lazy" />
+          <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent pointer-events-none"></div>
+          <div class="relative z-10 text-left">
+            <span class="text-[10px] uppercase font-bold tracking-wider text-amber-300 block mb-0.5 drop-shadow">Apparel & Cotton</span>
+            <div class="font-extrabold text-sm text-white group-hover:text-amber-400 transition-colors drop-shadow">Textiles</div>
+          </div>
+        </div>
+
+        <div class="interactive-card reveal-base reveal-zoom delay-200 relative rounded-xl overflow-hidden border border-slate-700/80 hover:border-amber-400 group h-56 bg-slate-950 flex flex-col justify-end p-3.5 shadow-md">
+          <img src="https://images.unsplash.com/photo-1617788138017-80ad40651399?auto=format&fit=crop&w=500&q=80" alt="Automobiles" class="zoom-img absolute inset-0 w-full h-full object-cover opacity-60 group-hover:opacity-85" loading="lazy" />
+          <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent pointer-events-none"></div>
+          <div class="relative z-10 text-left">
+            <span class="text-[10px] uppercase font-bold tracking-wider text-amber-300 block mb-0.5 drop-shadow">Spares & Parts</span>
+            <div class="font-extrabold text-sm text-white group-hover:text-amber-400 transition-colors drop-shadow">Automobiles</div>
+          </div>
+        </div>
+
+        <div class="interactive-card reveal-base reveal-zoom delay-250 relative rounded-xl overflow-hidden border border-slate-700/80 hover:border-amber-400 group h-56 bg-slate-950 flex flex-col justify-end p-3.5 shadow-md">
+          <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=500&q=80" alt="Electronics" class="zoom-img absolute inset-0 w-full h-full object-cover opacity-60 group-hover:opacity-85" loading="lazy" />
+          <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent pointer-events-none"></div>
+          <div class="relative z-10 text-left">
+            <span class="text-[10px] uppercase font-bold tracking-wider text-amber-300 block mb-0.5 drop-shadow">Components</span>
+            <div class="font-extrabold text-sm text-white group-hover:text-amber-400 transition-colors drop-shadow">Electronics</div>
+          </div>
+        </div>
+
+        <div class="interactive-card reveal-base reveal-zoom delay-300 relative rounded-xl overflow-hidden border border-slate-700/80 hover:border-amber-400 group h-56 bg-slate-950 flex flex-col justify-end p-3.5 shadow-md">
+          <img src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=500&q=80" alt="Machinery" class="zoom-img absolute inset-0 w-full h-full object-cover opacity-60 group-hover:opacity-85" loading="lazy" />
+          <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent pointer-events-none"></div>
+          <div class="relative z-10 text-left">
+            <span class="text-[10px] uppercase font-bold tracking-wider text-amber-300 block mb-0.5 drop-shadow">Tools & Hardware</span>
+            <div class="font-extrabold text-sm text-white group-hover:text-amber-400 transition-colors drop-shadow">Machinery</div>
+          </div>
+        </div>
+
+        <div class="interactive-card reveal-base reveal-zoom delay-350 relative rounded-xl overflow-hidden border border-slate-700/80 hover:border-amber-400 group h-56 bg-slate-950 flex flex-col justify-end p-3.5 shadow-md">
+          <img src="https://images.unsplash.com/photo-1500937386664-56d1dfef3854?auto=format&fit=crop&w=500&q=80" alt="Agriculture" class="zoom-img absolute inset-0 w-full h-full object-cover opacity-60 group-hover:opacity-85" loading="lazy" />
+          <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent pointer-events-none"></div>
+          <div class="relative z-10 text-left">
+            <span class="text-[10px] uppercase font-bold tracking-wider text-amber-300 block mb-0.5 drop-shadow">Farm & Grains</span>
+            <div class="font-extrabold text-sm text-white group-hover:text-amber-400 transition-colors drop-shadow">Agriculture</div>
+          </div>
+        </div>
+
+        <div class="interactive-card reveal-base reveal-zoom delay-400 relative rounded-xl overflow-hidden border border-slate-700/80 hover:border-amber-400 group h-56 bg-slate-950 flex flex-col justify-end p-3.5 shadow-md col-span-2 sm:col-span-1">
+          <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=500&q=80" alt="Other Sectors" class="zoom-img absolute inset-0 w-full h-full object-cover opacity-60 group-hover:opacity-85" loading="lazy" />
+          <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent pointer-events-none"></div>
+          <div class="relative z-10 text-left">
+            <span class="text-[10px] uppercase font-bold tracking-wider text-amber-300 block mb-0.5 drop-shadow">Custom Trade</span>
+            <div class="font-extrabold text-sm text-white group-hover:text-amber-400 transition-colors drop-shadow">Other Sectors</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INTERACTIVE WORKFLOW SECTION -->
+  <section id="process" class="py-24 bg-white relative overflow-hidden border-y border-slate-100">
+    <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[350px] bg-sky-100/60 blur-[130px] rounded-full pointer-events-none"></div>
+    <div class="absolute bottom-10 right-10 w-96 h-96 bg-emerald-100/50 blur-[120px] rounded-full pointer-events-none"></div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div class="text-center max-w-3xl mx-auto space-y-3 reveal-base reveal-up">
+        <span class="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-sky-50 border border-sky-200 text-sky-700 text-xs font-bold tracking-widest uppercase">
+          <span class="w-2 h-2 rounded-full bg-sky-500 animate-ping"></span>
+          Operational Pipeline
+        </span>
+        <h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight">
+          Our Problem-Solving Workflow
+        </h2>
+        <p class="text-slate-600 text-base max-w-2xl mx-auto leading-relaxed">
+          From domestic sourcing to destination container handover, inspect our compliance checkpoints, documentation protocols, and SLAs.
+        </p>
+      </div>
+
+      <!-- PROGRESS STEPPER -->
+      <div class="mt-12 reveal-base reveal-up delay-100">
+        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 select-none">
+          <button type="button" onclick="switchWorkflowStep(0)" id="stepTab-0" class="step-tab-btn active text-left p-4 rounded-2xl border transition-all duration-300 relative group bg-sky-50/70 border-sky-500 shadow-md shadow-sky-500/10">
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-[11px] font-black tracking-wider uppercase text-sky-600">Step 01</span>
+              <span class="w-2.5 h-2.5 rounded-full bg-sky-500"></span>
+            </div>
+            <div class="font-bold text-base text-slate-900">Understand</div>
+            <div class="text-xs text-slate-500 mt-1 truncate">Specs & Targets</div>
+          </button>
+
+          <button type="button" onclick="switchWorkflowStep(1)" id="stepTab-1" class="step-tab-btn text-left p-4 rounded-2xl border transition-all duration-300 relative group bg-slate-50 border-slate-200 hover:border-slate-300">
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-[11px] font-black tracking-wider uppercase text-slate-400 group-hover:text-teal-600">Step 02</span>
+              <span class="w-2.5 h-2.5 rounded-full bg-slate-300 group-hover:bg-teal-500"></span>
+            </div>
+            <div class="font-bold text-base text-slate-900">Source</div>
+            <div class="text-xs text-slate-500 mt-1 truncate">Direct Procurement</div>
+          </button>
+
+          <button type="button" onclick="switchWorkflowStep(2)" id="stepTab-2" class="step-tab-btn text-left p-4 rounded-2xl border transition-all duration-300 relative group bg-slate-50 border-slate-200 hover:border-slate-300">
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-[11px] font-black tracking-wider uppercase text-slate-400 group-hover:text-amber-600">Step 03</span>
+              <span class="w-2.5 h-2.5 rounded-full bg-slate-300 group-hover:bg-amber-500"></span>
+            </div>
+            <div class="font-bold text-base text-slate-900">Evaluate</div>
+            <div class="text-xs text-slate-500 mt-1 truncate">Testing & Pricing</div>
+          </button>
+
+          <button type="button" onclick="switchWorkflowStep(3)" id="stepTab-3" class="step-tab-btn text-left p-4 rounded-2xl border transition-all duration-300 relative group bg-slate-50 border-slate-200 hover:border-slate-300">
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-[11px] font-black tracking-wider uppercase text-slate-400 group-hover:text-indigo-600">Step 04</span>
+              <span class="w-2.5 h-2.5 rounded-full bg-slate-300 group-hover:bg-indigo-500"></span>
+            </div>
+            <div class="font-bold text-base text-slate-900">Prepare</div>
+            <div class="text-xs text-slate-500 mt-1 truncate">Packaging & Labels</div>
+          </button>
+
+          <button type="button" onclick="switchWorkflowStep(4)" id="stepTab-4" class="step-tab-btn text-left p-4 rounded-2xl border transition-all duration-300 relative group bg-slate-50 border-slate-200 hover:border-slate-300">
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-[11px] font-black tracking-wider uppercase text-slate-400 group-hover:text-rose-600">Step 05</span>
+              <span class="w-2.5 h-2.5 rounded-full bg-slate-300 group-hover:bg-rose-500"></span>
+            </div>
+            <div class="font-bold text-base text-slate-900">Ship</div>
+            <div class="text-xs text-slate-500 mt-1 truncate">Clearance & Freight</div>
+          </button>
+
+          <button type="button" onclick="switchWorkflowStep(5)" id="stepTab-5" class="step-tab-btn text-left p-4 rounded-2xl border transition-all duration-300 relative group bg-slate-50 border-slate-200 hover:border-slate-300">
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-[11px] font-black tracking-wider uppercase text-slate-400 group-hover:text-emerald-600">Step 06</span>
+              <span class="w-2.5 h-2.5 rounded-full bg-slate-300 group-hover:bg-emerald-500"></span>
+            </div>
+            <div class="font-bold text-base text-slate-900">Deliver</div>
+            <div class="text-xs text-slate-500 mt-1 truncate">Port & Acceptance</div>
+          </button>
+        </div>
+      </div>
+
+      <!-- WORKFLOW DETAIL -->
+      <div id="workflowDetailBox" class="mt-8 bg-white rounded-3xl border border-slate-200 p-6 sm:p-10 shadow-xl relative reveal-base reveal-up delay-200 transition-all duration-300">
+        <div class="grid lg:grid-cols-12 gap-8 items-center">
+          <div class="lg:col-span-5 relative">
+            <div class="relative h-64 sm:h-80 w-full rounded-2xl overflow-hidden border border-slate-200 shadow-md bg-slate-100">
+              <img 
+                id="workflowDetailImg" 
+                src="./assets/requriments.jpg" 
+                alt="Understand Trade Specifications" 
+                onerror="this.onerror=null; this.src='https://placehold.co/800x600/0284c7/ffffff?text=Trade+Analysis';" 
+                class="w-full h-full object-cover transition-all duration-500 ease-out"
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-slate-950/75 via-transparent to-transparent"></div>
+              
+              <div class="absolute bottom-4 left-4 right-4 flex items-center justify-between">
+                <span id="workflowBadgePill" class="px-3.5 py-1.5 rounded-full text-xs font-extrabold uppercase tracking-wider bg-sky-500 text-white shadow-md">
+                  Phase 1 Verified
+                </span>
+                <span id="workflowTimePill" class="text-xs font-bold px-3 py-1 rounded-full bg-white/90 border border-white text-slate-800 backdrop-blur shadow-sm">
+                  TAT: &lt; 24h
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <div class="lg:col-span-7 space-y-6">
+            <div>
+              <div class="flex items-center gap-3">
+                <span id="workflowTagNumber" class="text-xs font-black text-sky-600 uppercase tracking-widest">STAGE 01 OF 06</span>
+                <span class="text-slate-300">•</span>
+                <span id="workflowCategory" class="text-xs text-slate-500 font-semibold uppercase tracking-wider">Requirement Ingestion</span>
+              </div>
+              <h3 id="workflowHeading" class="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-1 leading-snug">
+                Deconstruct Specs & Destination Compliance
+              </h3>
+              <p id="workflowParagraph" class="text-slate-600 text-sm sm:text-base leading-relaxed mt-3">
+                Every trade journey begins with forensic assessment of target commodities: volume, shelf-life factors, destination tariffs, required ITC (HS) classifications, and buyer packaging standards.
+              </p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+              <div class="p-4 rounded-xl bg-slate-50 border border-slate-200">
+                <div class="text-[11px] text-slate-500 font-semibold uppercase tracking-wider">Turnaround</div>
+                <div id="workflowMetric1" class="text-sm font-extrabold text-slate-900 mt-0.5">&lt; 24 Hours</div>
+              </div>
+              <div class="p-4 rounded-xl bg-slate-50 border border-slate-200">
+                <div class="text-[11px] text-slate-500 font-semibold uppercase tracking-wider">Focus Desk</div>
+                <div id="workflowMetric2" class="text-sm font-extrabold text-slate-900 mt-0.5">Commercial Feasibility</div>
+              </div>
+              <div class="p-4 rounded-xl bg-slate-50 border border-slate-200">
+                <div class="text-[11px] text-slate-500 font-semibold uppercase tracking-wider">Deliverable</div>
+                <div id="workflowMetric3" class="text-sm font-extrabold text-sky-600 mt-0.5">Approved Trade Scope</div>
+              </div>
+            </div>
+
+            <div class="border-t border-slate-100 pt-5">
+              <div class="text-xs font-bold text-slate-500 uppercase tracking-wider mb-3">Key Operations Handled</div>
+              <ul id="workflowChecklist" class="grid sm:grid-cols-2 gap-2.5 text-xs font-medium text-slate-700">
+                <li class="flex items-center gap-2">
+                  <svg class="w-4 h-4 text-emerald-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                  <span>HS Code validation & duty benchmark</span>
+                </li>
+                <li class="flex items-center gap-2">
+                  <svg class="w-4 h-4 text-emerald-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                  <span>Target price & currency risk checks</span>
+                </li>
+                <li class="flex items-center gap-2">
+                  <svg class="w-4 h-4 text-emerald-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                  <span>Import quota & quarantine advisory</span>
+                </li>
+                <li class="flex items-center gap-2">
+                  <svg class="w-4 h-4 text-emerald-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                  <span>Volume-to-container packing estimates</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- PROJECTS & INITIATIVES SECTION -->
+  <section id="projects" class="py-24 bg-slate-50/70 border-t border-slate-200/80 relative overflow-hidden">
+    <div class="absolute -top-24 left-1/2 -translate-x-1/2 w-96 h-96 bg-indigo-100/60 rounded-full blur-3xl pointer-events-none"></div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div class="text-center max-w-3xl mx-auto space-y-3 reveal-base reveal-up">
+        <span class="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-indigo-50 border border-indigo-200 text-indigo-700 text-xs font-bold tracking-widest uppercase">
+          <span class="w-2 h-2 rounded-full bg-indigo-500 animate-pulse"></span>
+          Expansion & Initiatives
+        </span>
+        <h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight">
+          Upcoming Projects & Strategic Desks
+        </h2>
+        <p class="text-slate-600 text-base leading-relaxed">
+          Continuously expanding our supplier and buyer network through international trade events, compliance facilitation, and specialized SME export infrastructure.
+        </p>
+      </div>
+
+      <div class="grid lg:grid-cols-2 gap-8 mt-14">
+        <div class="interactive-card reveal-base reveal-left delay-150 relative rounded-3xl p-8 sm:p-10 bg-gradient-to-br from-slate-950 via-slate-900 to-indigo-950 text-white shadow-xl border border-slate-800 flex flex-col justify-between group overflow-hidden">
+          <div class="absolute -right-16 -top-16 w-52 h-52 bg-amber-500/10 rounded-full blur-2xl group-hover:bg-amber-500/20 transition-all duration-500 pointer-events-none"></div>
+
+          <div class="space-y-6">
+            <div class="flex flex-wrap items-center justify-between gap-3 border-b border-slate-800 pb-5">
+              <div class="flex items-center gap-2.5">
+                <span class="w-9 h-9 rounded-xl bg-amber-400/10 border border-amber-400/20 text-amber-300 flex items-center justify-center text-lg">
+                  🌐
+                </span>
+                <div>
+                  <span class="text-[10px] font-bold tracking-wider text-amber-400 uppercase">Global Trade Event</span>
+                  <div class="text-xs text-slate-400">Trade Exchange Platform</div>
+                </div>
+              </div>
+              <span class="inline-flex items-center gap-1.5 text-[11px] font-extrabold px-3 py-1 rounded-full bg-amber-400/10 text-amber-300 border border-amber-400/30">
+                <span class="w-1.5 h-1.5 rounded-full bg-amber-400 animate-ping"></span>
+                FEATURED EVENT
+              </span>
+            </div>
+
+            <div>
+              <h3 class="text-2xl sm:text-3xl font-extrabold text-white group-hover:text-amber-300 transition-colors">
+                International Business Trade Fair
+              </h3>
+              <p class="text-slate-300 text-sm sm:text-base mt-3 leading-relaxed">
+                A platform connecting global buyers, suppliers, and business partners to explore new markets, showcase products, build valuable connections, and create international trade opportunities.
+              </p>
+            </div>
+
+            <div class="flex flex-wrap gap-2 pt-2">
+              <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-slate-800/80 border border-slate-700 text-xs font-semibold text-slate-300">
+                🤝 Direct Buyer-Seller Meets
+              </span>
+              <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-slate-800/80 border border-slate-700 text-xs font-semibold text-slate-300">
+                🌍 B2B Global Delegation
+              </span>
+              <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-slate-800/80 border border-slate-700 text-xs font-semibold text-slate-300">
+                📦 Product Expo & Sourcing
+              </span>
+            </div>
+          </div>
+
+          <div class="pt-8 mt-6 border-t border-slate-800 flex items-center justify-between">
+            <span class="text-xs text-slate-400">Targeting UAE, UK & GCC buyers</span>
+            <button onclick="openQuoteModal('International Business Trade Fair')" class="inline-flex items-center gap-1.5 text-xs font-bold text-amber-300 hover:text-white group-hover:translate-x-1 transition-all">
+              <span>Register Interest</span>
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+            </button>
+          </div>
+        </div>
+
+        <div class="interactive-card reveal-base reveal-right delay-300 relative rounded-3xl p-8 sm:p-10 bg-white border border-slate-200 shadow-xl flex flex-col justify-between group overflow-hidden">
+          <div class="absolute -right-16 -top-16 w-52 h-52 bg-emerald-500/5 rounded-full blur-2xl group-hover:bg-emerald-500/10 transition-all duration-500 pointer-events-none"></div>
+
+          <div class="space-y-6">
+            <div class="flex flex-wrap items-center justify-between gap-3 border-b border-slate-100 pb-5">
+              <div class="flex items-center gap-2.5">
+                <span class="w-9 h-9 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-600 flex items-center justify-center text-lg">
+                  📜
+                </span>
+                <div>
+                  <span class="text-[10px] font-bold tracking-wider text-emerald-700 uppercase">SME Compliance Wing</span>
+                  <div class="text-xs text-slate-500">Regulatory Advisory & Execution</div>
+                </div>
+              </div>
+              <span class="inline-flex items-center gap-1.5 text-[11px] font-extrabold px-3 py-1 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200">
+                <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+                ACTIVE EXPANSION
+              </span>
+            </div>
+
+            <div>
+              <h3 class="text-2xl sm:text-3xl font-extrabold text-slate-900 group-hover:text-emerald-700 transition-colors">
+                Documentation Works & Customs Clearances
+              </h3>
+              <p class="text-slate-600 text-sm sm:text-base mt-3 leading-relaxed">
+                Scaling up specialized trade documentation and clearance support for small and medium enterprises (SMEs) entering the export arena, covering end-to-end filings on the DGFT portal, customs clearances, phytosanitary certifications, freight insurance, and the resolution of export-related GST notices.
+              </p>
+            </div>
+
+            <div class="flex flex-wrap gap-2 pt-2">
+              <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-slate-50 border border-slate-200 text-xs font-semibold text-slate-700">
+                💻 DGFT & ICEGATE Filing
+              </span>
+              <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-slate-50 border border-slate-200 text-xs font-semibold text-slate-700">
+                🌱 PQIS Phytosanitary (PSC)
+              </span>
+              <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-slate-50 border border-slate-200 text-xs font-semibold text-slate-700">
+                📑 GST Notice & Refund Resolution
+              </span>
+              <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-slate-50 border border-slate-200 text-xs font-semibold text-slate-700">
+                🛡️ Marine Transit Insurance
+              </span>
+            </div>
+          </div>
+
+          <div class="pt-8 mt-6 border-t border-slate-100 flex items-center justify-between">
+            <span class="text-xs text-slate-500">Dedicated desk for new & existing exporters</span>
+            <button onclick="openQuoteModal('Documentation Works & Customs Clearances')" class="inline-flex items-center gap-1.5 text-xs font-bold text-emerald-700 hover:text-emerald-800 group-hover:translate-x-1 transition-all">
+              <span>Consult Compliance Desk</span>
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT & TRADE INQUIRY SECTION -->
+  <section id="contact" class="py-20 bg-slate-950 text-white overflow-hidden">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="grid lg:grid-cols-12 gap-12">
+        <div class="lg:col-span-5 space-y-8 reveal-base reveal-left">
+          <div>
+            <span class="text-amber-400 font-bold text-xs uppercase tracking-widest bg-slate-800 px-3 py-1 rounded-full border border-slate-700">Get In Touch</span>
+            <h2 class="text-3xl sm:text-4xl font-extrabold mt-3">Let's Build Global Business Together</h2>
+            <p class="text-slate-400 text-sm mt-3 leading-relaxed">
+              Whether you are looking to source products from India, export to international markets, find reliable suppliers, or develop new trade opportunities, RSK Traders is ready to explore the right solution for your business.
+            </p>
+          </div>
+
+          <div class="space-y-6 text-sm">
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 rounded-xl bg-slate-800 text-amber-400 border border-slate-700 flex items-center justify-center flex-shrink-0">📍</div>
+              <div>
+                <div class="text-xs text-slate-400 uppercase font-semibold">Corporate Office Address</div>
+                <div class="font-bold text-slate-200 mt-0.5">RSK TRADERS</div>
+                <div class="text-slate-400 text-xs mt-1">91/46 Sunnampukara Street, Trichy – 620008, Tamil Nadu, India</div>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 rounded-xl bg-slate-800 text-amber-400 border border-slate-700 flex items-center justify-center flex-shrink-0">📞</div>
+              <div>
+                <div class="text-xs text-slate-400 uppercase font-semibold">Mobile & WhatsApp</div>
+                <a href="tel:+916382380563" class="font-bold text-amber-300 hover:underline text-base mt-0.5 block">+91 63823 80563</a>
+                <div class="text-slate-400 text-xs">Direct trade inquiries & order status</div>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 rounded-xl bg-slate-800 text-amber-400 border border-slate-700 flex items-center justify-center flex-shrink-0">✉️</div>
+              <div>
+                <div class="text-xs text-slate-400 uppercase font-semibold">Official Email</div>
+                <a href="mailto:rsktraders2024@gmail.com" class="font-bold text-sky-400 hover:underline text-base mt-0.5 block">rsktraders2024@gmail.com</a>
+                <div class="text-slate-400 text-xs">Send product specs & RFQs</div>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 rounded-xl bg-slate-800 text-amber-400 border border-slate-700 flex items-center justify-center flex-shrink-0">📜</div>
+              <div>
+                <div class="text-xs text-slate-400 uppercase font-semibold">Regulatory Certifications</div>
+                <div class="text-xs font-semibold text-emerald-400 mt-1">Import Export Code (IEC): ABKFR3824J</div>
+                <div class="text-xs font-semibold text-emerald-400">GST Registration: 33ABKFR3824J1Z1</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="pt-4">
+            <a href="https://wa.me/916382380563?text=Hello%20RSK%20Traders,%20I%20have%20an%20import/export%20inquiry." target="_blank" class="w-full py-3 px-6 rounded-xl bg-emerald-600 hover:bg-emerald-500 hover:scale-105 active:scale-95 text-white font-bold text-sm transition flex items-center justify-center gap-2 shadow-lg shadow-emerald-600/20">
+              <span>💬 Chat Directly on WhatsApp</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- FORM CONNECTED TO GOOGLE APPS SCRIPT -->
+        <div class="lg:col-span-7 reveal-base reveal-right delay-200">
+          <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 sm:p-8 shadow-2xl space-y-6">
+            <div>
+              <h3 class="text-2xl font-bold text-white">Send Trade Inquiry</h3>
+              <p class="text-slate-400 text-xs mt-1">Fill in your sourcing or export requirement details below and our team will get back to you within 24 hours.</p>
+            </div>
+
+            <form id="contactForm" onsubmit="handleFormSubmit(event)" class="space-y-4">
+              <div class="grid sm:grid-cols-2 gap-4">
+                <div>
+                  <label class="block text-xs font-medium text-slate-300 mb-1">Your Full Name *</label>
+                  <input type="text" id="contactName" required placeholder="e.g. John Doe" class="w-full bg-slate-950 border border-slate-700 rounded-lg px-3.5 py-2.5 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-sky-500">
+                </div>
+                <div>
+                  <label class="block text-xs font-medium text-slate-300 mb-1">Company / Organization *</label>
+                  <input type="text" id="contactCompany" required placeholder="e.g. Global Trade LLC" class="w-full bg-slate-950 border border-slate-700 rounded-lg px-3.5 py-2.5 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-sky-500">
+                </div>
+              </div>
+
+              <div class="grid sm:grid-cols-2 gap-4">
+                <div>
+                  <label class="block text-xs font-medium text-slate-300 mb-1">Email Address *</label>
+                  <input type="email" id="contactEmail" required placeholder="name@company.com" class="w-full bg-slate-950 border border-slate-700 rounded-lg px-3.5 py-2.5 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-sky-500">
+                </div>
+                <div>
+                  <label class="block text-xs font-medium text-slate-300 mb-1">Phone / Mobile with Country Code *</label>
+                  <input type="tel" id="contactPhone" required placeholder="+971 ... / +1 ..." class="w-full bg-slate-950 border border-slate-700 rounded-lg px-3.5 py-2.5 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-sky-500">
+                </div>
+              </div>
+
+              <div class="grid sm:grid-cols-2 gap-4">
+                <div>
+                  <label class="block text-xs font-medium text-slate-300 mb-1">Service Required</label>
+                  <select id="serviceSelect" class="w-full bg-slate-950 border border-slate-700 rounded-lg px-3.5 py-2.5 text-sm text-slate-300 focus:outline-none focus:border-sky-500">
+                    <option value="Export Services">Export Services from India</option>
+                    <option value="Import Services">Import Sourcing into India</option>
+                    <option value="Agricultural Products">Agricultural & Food Sourcing</option>
+                    <option value="Logistics">Air / Sea Freight Logistics</option>
+                    <option value="Global Trade Fair">Trade Fair / Partnership</option>
+                  </select>
+                </div>
+                <div>
+                  <label class="block text-xs font-medium text-slate-300 mb-1">Destination Country</label>
+                  <input type="text" id="contactDestination" placeholder="e.g. UAE, UK, USA, Oman, etc." class="w-full bg-slate-950 border border-slate-700 rounded-lg px-3.5 py-2.5 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-sky-500">
+                </div>
+              </div>
+
+              <div>
+                <label class="block text-xs font-medium text-slate-300 mb-1">Product Specifications & Quantity Requirement *</label>
+                <textarea id="contactMessage" rows="4" required placeholder="Describe product specs, quantity, target price, packaging preferences, and preferred shipment timeline..." class="w-full bg-slate-950 border border-slate-700 rounded-lg px-3.5 py-2.5 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-sky-500"></textarea>
+              </div>
+
+              <button type="submit" id="contactSubmitBtn" class="w-full py-3.5 rounded-xl bg-gradient-to-r from-sky-500 to-teal-500 hover:from-sky-400 hover:to-teal-400 hover:scale-[1.01] active:scale-[0.99] text-slate-950 font-extrabold text-sm transition shadow-lg shadow-sky-500/20 disabled:opacity-50">
+                Submit Trade Requirement
+              </button>
+
+              <div id="formSuccessMessage" class="hidden p-3 rounded-lg bg-emerald-500/20 border border-emerald-500/40 text-emerald-300 text-xs text-center">
+                ✓ Thank you! Your inquiry has been submitted to RSK Traders. We will contact you shortly.
+              </div>
+              <div id="formErrorMessage" class="hidden p-3 rounded-lg bg-rose-500/20 border border-rose-500/40 text-rose-300 text-xs text-center">
+                ⚠️ Submission failed. Please try again or reach out on WhatsApp.
+              </div>
+            </form>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="bg-slate-950 text-slate-400 text-xs py-10 border-t border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+      
+      <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+        <div class="flex items-center gap-3">
+          <img 
+            src="assets/logo.jpg" 
+            alt="Logo" 
+            onerror="this.onerror=null; this.src='https://placehold.co/40x40/0284c7/ffffff?text=RSK';" 
+            class="w-10 h-10 object-contain rounded-lg"
+          >
+          <div>
+            <div class="text-white font-bold text-sm">RSK TRADERS IMPORT AND EXPORTS</div>
+            <div class="text-[11px] text-slate-400">“WE CONNECT. WE SOLVE. WE DELIVER”</div>
+          </div>
+        </div>
+
+        <div class="flex flex-wrap gap-6 text-slate-400">
+          <a href="#home" class="hover:text-white transition">Home</a>
+          <a href="#about" class="hover:text-white transition">About</a>
+          <a href="#leadership" class="hover:text-white transition">Leadership</a>
+          <a href="#services" class="hover:text-white transition">Services</a>
+          <a href="#products" class="hover:text-white transition">Products</a>
+          <a href="#projects" class="hover:text-white transition">Upcoming Projects</a>
+          <a href="#contact" class="hover:text-white transition">Contact</a>
+        </div>
+      </div>
+
+      <div class="border-t border-slate-800/80 pt-6 flex flex-col sm:flex-row justify-between items-center gap-4 text-slate-400 text-center sm:text-left">
+        <div>
+          © 2024 - Present RSK TRADERS IMPORT AND EXPORTS. All Rights Reserved.
+        </div>
+        <div class="flex flex-wrap justify-center sm:justify-end items-center gap-2 sm:gap-4 text-[11px]">
+          <span>IEC Code: ABKFR3824J</span>
+          <span class="hidden sm:inline">•</span>
+          <span>GSTIN: 33ABKFR3824J1Z1</span>
+          <span class="hidden sm:inline">•</span>
+          <span>Trichy, Tamil Nadu, India</span>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+<!-- MODAL FOR REQUEST QUOTE -->
+  <div id="quoteModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
+    <div class="bg-white rounded-2xl max-w-lg w-full p-6 sm:p-8 shadow-2xl relative space-y-4" id="quoteModalCard">
+      <button onclick="closeQuoteModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 text-xl font-bold transition">✕</button>
+      
+      <div>
+        <span class="text-xs font-bold text-sky-600 uppercase tracking-wider">Fast Trade Proposal</span>
+        <h3 class="text-2xl font-bold text-slate-900 mt-0.5">Request Trade Quote</h3>
+        <p class="text-slate-600 text-xs mt-1">Specify your target commodity, volume, and destination for a competitive quotation.</p>
+      </div>
+
+      <form id="modalQuoteForm" onsubmit="handleModalSubmit(event)" class="space-y-3 text-xs">
+        <div>
+          <label class="block font-medium text-slate-700 mb-1">Service / Product Needed</label>
+          <input type="text" id="modalServiceInput" required placeholder="e.g. Fresh Vegetables Export to UAE" class="w-full border border-slate-300 rounded-lg px-3 py-2 text-slate-800 focus:outline-none focus:border-sky-500">
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div>
+            <label class="block font-medium text-slate-700 mb-1">Your Name</label>
+            <input type="text" id="modalName" required placeholder="Name" class="w-full border border-slate-300 rounded-lg px-3 py-2 text-slate-800 focus:outline-none focus:border-sky-500">
+          </div>
+          <div>
+            <label class="block font-medium text-slate-700 mb-1">Contact Phone / WhatsApp</label>
+            <input type="tel" id="modalPhone" required placeholder="+91..." class="w-full border border-slate-300 rounded-lg px-3 py-2 text-slate-800 focus:outline-none focus:border-sky-500">
+          </div>
+        </div>
+        <div>
+          <label class="block font-medium text-slate-700 mb-1">Email Address</label>
+          <input type="email" id="modalEmail" required placeholder="email@domain.com" class="w-full border border-slate-300 rounded-lg px-3 py-2 text-slate-800 focus:outline-none focus:border-sky-500">
+        </div>
+        <div>
+          <label class="block font-medium text-slate-700 mb-1">Requirement Overview</label>
+          <textarea id="modalMessage" rows="3" placeholder="Quantities, target price, delivery port..." class="w-full border border-slate-300 rounded-lg px-3 py-2 text-slate-800 focus:outline-none focus:border-sky-500"></textarea>
+        </div>
+
+        <button type="submit" id="modalSubmitBtn" class="w-full py-3 rounded-xl bg-sky-600 hover:bg-sky-700 active:scale-[0.99] text-white font-bold text-sm transition shadow-lg shadow-sky-600/30 disabled:opacity-50">
+          Submit Quote Request
+        </button>
+
+        <!-- Dynamic Feedback Notices -->
+        <div id="modalSuccessMessage" class="hidden p-3 rounded-xl bg-emerald-50 border border-emerald-300 text-emerald-800 text-xs flex items-center gap-2.5 shadow-sm">
+          <svg class="w-4 h-4 text-emerald-600 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path>
+          </svg>
+          <div>
+            <span class="font-bold">Quote Request Submitted!</span> RSK Traders will contact you within 24 hours.
+          </div>
+        </div>
+
+        <div id="modalErrorMessage" class="hidden p-3 rounded-xl bg-rose-50 border border-rose-300 text-rose-800 text-xs flex items-center gap-2.5 shadow-sm">
+          <svg class="w-4 h-4 text-rose-600 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+          </svg>
+          <div>
+            <span class="font-bold">Failed to submit.</span> Please check your connection or contact via WhatsApp.
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- JAVASCRIPT CONTROLLERS -->
+  <script>
+    // YOUR GOOGLE APPS SCRIPT WEB APP URL
+const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbw80IZbmhQgDvH1k9pK7xEbgkWU2hnZLYZADlk7AnXRQ4qk-6-0_yn0yd-GJTdQ6GZ7dQ/exec";
+    // Dismiss splash screen cleanly
+    function closeSplash() {
+      const splash = document.getElementById('splashScreen');
+      if (splash) {
+        splash.classList.add('hide-splash');
+        setTimeout(() => {
+          splash.style.display = 'none';
+        }, 500);
+      }
+    }
+
+    window.addEventListener('load', () => {
+      setTimeout(closeSplash, 1800);
+    });
+    setTimeout(closeSplash, 2500);
+
+    function toggleMobileMenu() {
+      const menu = document.getElementById('mobileMenu');
+      const hamburger = document.getElementById('hamburgerIcon');
+      const close = document.getElementById('closeIcon');
+      menu.classList.toggle('hidden');
+      if (hamburger && close) {
+        hamburger.classList.toggle('hidden');
+        close.classList.toggle('hidden');
+      }
+    }
+
+    function smoothScrollTo(targetId, event) {
+      if (event) event.preventDefault();
+      const el = document.querySelector(targetId);
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
+
+    function openQuoteModal(serviceName = '') {
+      const modal = document.getElementById('quoteModal');
+      const input = document.getElementById('modalServiceInput');
+      if (serviceName) {
+        input.value = serviceName;
+      }
+      modal.classList.remove('hidden');
+    }
+
+    function closeQuoteModal() {
+      const modal = document.getElementById('quoteModal');
+      modal.classList.add('hidden');
+    }
+
+    // Handlers for Submitting Forms to Google Apps Script
+async function handleFormSubmit(event) {
+  event.preventDefault();
+
+  const btn = document.getElementById('contactSubmitBtn');
+  const successMsg = document.getElementById('formSuccessMessage');
+  const errorMsg = document.getElementById('formErrorMessage');
+
+  successMsg.classList.add('hidden');
+  errorMsg.classList.add('hidden');
+
+  const payload = {
+    formType: "Contact Inquiry",
+    name: document.getElementById('contactName').value.trim(),
+    company: document.getElementById('contactCompany').value.trim(),
+    email: document.getElementById('contactEmail').value.trim(),
+    phone: document.getElementById('contactPhone').value.trim(),
+    service: document.getElementById('serviceSelect').value,
+    destination: document.getElementById('contactDestination').value.trim(),
+    message: document.getElementById('contactMessage').value.trim()
+  };
+
+  const originalBtnText = btn.innerHTML;
+  btn.disabled = true;
+  btn.innerHTML = `<span class="inline-flex items-center gap-2">Submitting...</span>`;
+
+  try {
+    const response = await fetch(APPS_SCRIPT_URL, {
+      method: "POST",
+      headers: {
+        "Content-Type": "text/plain;charset=utf-8"
+      },
+      body: JSON.stringify(payload)
+    });
+
+    const result = await response.json();
+
+    // Supports both { success: true } and { status: "success" }
+    if (result.success === true || result.status === "success") {
+      successMsg.classList.remove('hidden');
+      event.target.reset();
+    } else {
+      console.error("Backend error response:", result);
+      errorMsg.classList.remove('hidden');
+    }
+  } catch (err) {
+    console.error("Network/Fetch error:", err);
+    errorMsg.classList.remove('hidden');
+  } finally {
+    btn.disabled = false;
+    btn.innerHTML = originalBtnText;
+  }
+}async function handleModalSubmit(event) {
+  event.preventDefault();
+
+  const btn = document.getElementById('modalSubmitBtn');
+  const successMsg = document.getElementById('modalSuccessMessage');
+
+  const payload = {
+    formType: "Modal Quote Request",
+    service: document.getElementById('modalServiceInput').value.trim(),
+    name: document.getElementById('modalName').value.trim(),
+    phone: document.getElementById('modalPhone').value.trim(),
+    email: document.getElementById('modalEmail').value.trim(),
+    message: document.getElementById('modalMessage').value.trim(),
+    company: "N/A",
+    destination: "N/A"
+  };
+
+  const originalBtnText = btn.innerHTML;
+  btn.disabled = true;
+  btn.innerHTML = "Submitting Quote...";
+
+  try {
+    const response = await fetch(APPS_SCRIPT_URL, {
+      method: "POST",
+      headers: {
+        "Content-Type": "text/plain;charset=utf-8"
+      },
+      body: JSON.stringify(payload)
+    });
+
+    const result = await response.json();
+
+    if (result.success === true || result.status === "success") {
+      successMsg.classList.remove('hidden');
+      setTimeout(() => {
+        closeQuoteModal();
+        event.target.reset();
+        successMsg.classList.add('hidden');
+      }, 1500);
+    } else {
+      alert("Error: " + (result.error || "Unable to submit quote"));
+    }
+  } catch (err) {
+    console.error("Error submitting modal quote:", err);
+    alert("Connection error. Please try again.");
+  } finally {
+    btn.disabled = false;
+    btn.innerHTML = originalBtnText;
+  }
+}
+    // Workflow Stages Data & Switcher
+    const workflowStages = [
+      {
+        step: "STAGE 01 OF 06",
+        cat: "Requirement Ingestion",
+        title: "Deconstruct Specs & Destination Compliance",
+        desc: "Every trade journey begins with forensic assessment of target commodities: reviewing commercial contracts, target volume, destination customs tariffs, HS classifications, and buyer packaging standards.",
+        img: "./assets/requriments.jpg",
+        badge: "Phase 1 Verified",
+        time: "TAT: < 24h",
+        colorClass: "bg-sky-500",
+        textColor: "text-sky-600",
+        activeTabBg: "bg-sky-50/70 border-sky-500 shadow-md shadow-sky-500/10",
+        m1: "< 24 Hours",
+        m2: "Commercial Feasibility",
+        m3: "Approved Trade Scope",
+        checks: [
+          "HS Code validation & duty benchmark",
+          "Target price & currency risk checks",
+          "Import quota & quarantine advisory",
+          "Volume-to-container packing estimates"
+        ]
+      },
+      {
+        step: "STAGE 02 OF 06",
+        cat: "Direct Procurement",
+        title: "Pan-India Verified Supplier & Grower Sourcing",
+        desc: "We bypass multi-layered brokerage networks by engaging directly at the field level with verified farms, agricultural harvest hubs, and direct processing mills across prime production regions.",
+        img: "https://images.unsplash.com/photo-1592417817098-8f3d69104a47?auto=format&fit=crop&w=800&q=80",
+        badge: "Farm / Mill Audited",
+        time: "TAT: 24 - 48h",
+        colorClass: "bg-teal-500",
+        textColor: "text-teal-600",
+        activeTabBg: "bg-teal-50/70 border-teal-500 shadow-md shadow-teal-500/10",
+        m1: "24 - 48 Hours",
+        m2: "Origin Audit",
+        m3: "Direct Mill Pricing",
+        checks: [
+          "Physical farm & harvest verification",
+          "Direct producer contracts & traceability",
+          "Elimination of middleman markups",
+          "Batch consistency guarantee"
+        ]
+      },
+      {
+        step: "STAGE 03 OF 06",
+        cat: "Quality Assurance",
+        title: "Strict Lab Evaluation & Sample Validation",
+        desc: "Before volume clearance, samples undergo rigorous laboratory inspection: chemical residue analysis, moisture content measurements, organoleptic tests, and FSSAI/APEDA certification.",
+        img: "https://images.unsplash.com/photo-1579154204601-01588f351e67?auto=format&fit=crop&w=800&q=80",
+        badge: "Lab Certified",
+        time: "TAT: 3 - 5 Days",
+        colorClass: "bg-amber-500",
+        textColor: "text-amber-600",
+        activeTabBg: "bg-amber-50/70 border-amber-500 shadow-md shadow-amber-500/10",
+        m1: "3 - 5 Days",
+        m2: "NABL Lab Tests",
+        m3: "Pre-Shipment Signoff",
+        checks: [
+          "Pesticide & chemical residue test",
+          "FSSAI / APEDA compliance checklist",
+          "Overseas buyer sample express dispatch",
+          "Detailed Certificate of Analysis (CoA)"
+        ]
+      },
+      {
+        step: "STAGE 04 OF 06",
+        cat: "Export Packaging",
+        title: "Cold-Chain, Vacuum Sealing & Palletization",
+        desc: "Cargo is packed in heavy-duty 5-ply export cartons, moisture-barrier vacuum polybags, and ISPM-15 heat-treated wooden pallets with GS1-compliant barcoding.",
+        img: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=800&q=80",
+        badge: "Export Standard",
+        time: "TAT: 24 - 36h",
+        colorClass: "bg-indigo-500",
+        textColor: "text-indigo-600",
+        activeTabBg: "bg-indigo-50/70 border-indigo-500 shadow-md shadow-indigo-500/10",
+        m1: "24 - 36 Hours",
+        m2: "Palletized & Sealed",
+        m3: "Reefer Pre-Cooling",
+        checks: [
+          "Corrugated export boxes & vacuum pouches",
+          "Moisture-controlled desiccants in place",
+          "GS1 barcodes & batch traceability markings",
+          "ISPM-15 treated wooden pallets"
+        ]
+      },
+      {
+        step: "STAGE 05 OF 06",
+        cat: "Clearance & Logistics",
+        title: "DGFT, ICEGATE Filings & Marine Insurance",
+        desc: "Filing electronic shipping bills through Indian Customs EDI System (ICES/ICEGATE), securing Phytosanitary Clearance (PQIS), closing LUT/GST reconciliations, and loading onto ocean vessels.",
+        img: "https://images.unsplash.com/photo-1578575437130-527eed3abbec?auto=format&fit=crop&w=800&q=80",
+        badge: "Customs Cleared",
+        time: "TAT: 12 - 24h",
+        colorClass: "bg-rose-500",
+        textColor: "text-rose-600",
+        activeTabBg: "bg-rose-50/70 border-rose-500 shadow-md shadow-rose-500/10",
+        m1: "12 - 24 Hours",
+        m2: "Single Window Clearance",
+        m3: "Insured Transit",
+        checks: [
+          "Phytosanitary inspection & PQIS clearance",
+          "Electronic Shipping Bill filing on ICEGATE",
+          "Institute Cargo Clauses (ICC-A) insurance",
+          "GST LUT & Port drawback verification"
+        ]
+      },
+      {
+        step: "STAGE 06 OF 06",
+        cat: "Global Handover",
+        title: "Destination Port Clearance & Final Delivery",
+        desc: "Real-time vessel AIS telemetry tracking through to overseas container terminal discharge, final customs de-vanning, and delivery receipt confirmation at the buyer's distribution warehouse.",
+        img: "https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?auto=format&fit=crop&w=800&q=80",
+        badge: "Delivered & Signed",
+        time: "TAT: As Per Route",
+        colorClass: "bg-emerald-500",
+        textColor: "text-emerald-600",
+        activeTabBg: "bg-emerald-50/70 border-emerald-500 shadow-md shadow-emerald-500/10",
+        m1: "Route Dependent",
+        m2: "Live Satellite AIS",
+        m3: "Proof of Delivery",
+        checks: [
+          "Real-time sea/air consignment tracking",
+          "e-BRC closure & export remittance linking",
+          "Destination port customs facilitation",
+          "Customer satisfaction review & repeat cycle"
+        ]
+      }
+    ];
+
+    function switchWorkflowStep(index) {
+      const data = workflowStages[index];
+      if (!data) return;
+
+      document.querySelectorAll('.step-tab-btn').forEach((btn, i) => {
+        if (i === index) {
+          btn.className = `step-tab-btn active text-left p-4 rounded-2xl border transition-all duration-300 relative group ${data.activeTabBg}`;
+          btn.querySelector('span:first-child').className = `text-[11px] font-black tracking-wider uppercase ${data.textColor}`;
+          btn.querySelector('span:last-child').className = `w-2.5 h-2.5 rounded-full ${data.colorClass}`;
+        } else {
+          btn.className = "step-tab-btn text-left p-4 rounded-2xl border transition-all duration-300 relative group bg-slate-50 border-slate-200 hover:border-slate-300";
+          btn.querySelector('span:first-child').className = "text-[11px] font-black tracking-wider uppercase text-slate-400";
+          btn.querySelector('span:last-child').className = "w-2.5 h-2.5 rounded-full bg-slate-300";
+        }
+      });
+
+      const detailBox = document.getElementById('workflowDetailBox');
+      if (detailBox) detailBox.style.opacity = '0.4';
+
+      setTimeout(() => {
+        document.getElementById('workflowTagNumber').textContent = data.step;
+        document.getElementById('workflowTagNumber').className = `text-xs font-black uppercase tracking-widest ${data.textColor}`;
+        document.getElementById('workflowCategory').textContent = data.cat;
+        document.getElementById('workflowHeading').textContent = data.title;
+        document.getElementById('workflowParagraph').textContent = data.desc;
+
+        const imgEl = document.getElementById('workflowDetailImg');
+        imgEl.src = data.img;
+        imgEl.alt = data.title;
+        imgEl.onerror = function() {
+          this.src = "https://placehold.co/800x600/0284c7/ffffff?text=" + encodeURIComponent(data.cat);
+        };
+
+        document.getElementById('workflowBadgePill').textContent = data.badge;
+        document.getElementById('workflowBadgePill').className = `px-3.5 py-1.5 rounded-full text-xs font-extrabold uppercase tracking-wider text-white shadow-md ${data.colorClass}`;
+        document.getElementById('workflowTimePill').textContent = data.time;
+
+        document.getElementById('workflowMetric1').textContent = data.m1;
+        document.getElementById('workflowMetric2').textContent = data.m2;
+        document.getElementById('workflowMetric3').textContent = data.m3;
+        document.getElementById('workflowMetric3').className = `text-sm font-extrabold mt-0.5 ${data.textColor}`;
+
+        const checkContainer = document.getElementById('workflowChecklist');
+        checkContainer.innerHTML = data.checks.map(item => `
+          <li class="flex items-center gap-2">
+            <svg class="w-4 h-4 text-emerald-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+            <span>${item}</span>
+          </li>
+        `).join('');
+
+        if (detailBox) detailBox.style.opacity = '1';
+      }, 150);
+    }
+
+    // Scroll Observer
+    document.addEventListener('DOMContentLoaded', () => {
+      const revealTargets = document.querySelectorAll('.reveal-base');
+      const scrollObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('reveal-active');
+          }
+        });
+      }, {
+        threshold: 0.12,
+        rootMargin: '0px 0px -40px 0px'
+      });
+
+      revealTargets.forEach(target => scrollObserver.observe(target));
+    });
+  </script>
+
+</body>
+</html>
