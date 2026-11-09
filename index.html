@@ -5,6 +5,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>RSK Traders | Global Logistics & International Trade • India</title>
   <meta name="description" content="RSK Traders is an India-based international export-import and global logistics powerhouse operating out of Tiruchirappalli (Trichy), Tamil Nadu. Direct farm procurement, certified goods, multimodal freight.">
+
+  <!-- Google Tag Manager -->
+  <script async src="https://www.googletagmanager.com/gtm.js?id=GTM-K7LJVZL6"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    dataLayer.push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
+    gtag('config', 'GTM-K7LJVZL6');
+  </script>
+  <!-- End Google Tag Manager -->
   
   <!-- Preconnect & Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -938,6 +951,7 @@
       html.js-ready .reveal .section-heading,
       html.js-ready .reveal h2 {
         filter: none !important;
+      }
     }
 
     /* ============================================================
@@ -1010,14 +1024,14 @@
       inset: 0;
       z-index: 999999;
       background-color: #FFFFFF;
-      transition: opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1),
-                  transform 0.6s cubic-bezier(0.22, 1, 0.36, 1),
-                  visibility 0.6s ease;
-      will-change: opacity, transform, visibility;
+      transition: transform 0.8s cubic-bezier(0.77, 0, 0.175, 1),
+                  opacity 0.65s cubic-bezier(0.77, 0, 0.175, 1),
+                  visibility 0.8s ease;
+      will-change: transform, opacity, visibility;
     }
     #splashScreen.hide-splash {
+      transform: translateY(-100%) !important;
       opacity: 0 !important;
-      transform: scale(1.06) !important;
       visibility: hidden !important;
       pointer-events: none !important;
     }
@@ -1328,6 +1342,10 @@
   </style>
 </head>
 <body class="bg-warmivory text-charcoal font-sans antialiased selection:bg-gold/20 selection:text-midnight">
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-K7LJVZL6"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
 
   <!-- NORMAL LUXURY LOGO SPLASH SCREEN OVERLAY -->
   <div id="splashScreen" onclick="dismissSplashScreen(event)" class="fixed inset-0 z-[999999] flex flex-col items-center justify-center bg-white select-none transition-opacity duration-500 ease-out cursor-pointer">
@@ -3990,6 +4008,83 @@
             </div>
           </div>
 
+          <!-- Email Address -->
+          <div>
+            <label class="block text-[11px] font-bold text-midnight tracking-wider uppercase mb-1.5 flex items-center justify-between">
+              <span>Corporate / Personal Email</span>
+              <span class="text-gold font-bold">*</span>
+            </label>
+            <div class="relative group">
+              <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-gold/70 group-focus-within:text-gold transition-colors">
+                <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                </svg>
+              </div>
+              <input 
+                type="email" 
+                id="modalEmail" 
+                required 
+                placeholder="name@company.com" 
+                class="w-full bg-[#FAF9F5] hover:bg-white focus:bg-white border border-[#E7EAF0] focus:border-gold rounded-xl pl-10 pr-3.5 py-2.5 text-xs text-charcoal placeholder-stategrey/50 focus:outline-none focus:ring-4 focus:ring-gold/15 transition-all duration-200 shadow-sm"
+              >
+            </div>
+          </div>
+
+          <!-- Requirement Overview -->
+          <div>
+            <label class="block text-[11px] font-bold text-midnight tracking-wider uppercase mb-1.5 flex items-center justify-between">
+              <span>Requirement Overview</span>
+              <span class="text-stategrey font-normal text-[10px] lowercase">(optional)</span>
+            </label>
+            <div class="relative group">
+              <div class="absolute top-3 left-0 pl-3.5 flex items-center pointer-events-none text-gold/70 group-focus-within:text-gold transition-colors">
+                <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7"/>
+                </svg>
+              </div>
+              <textarea 
+                id="modalMessage" 
+                rows="3" 
+                placeholder="Quantities, grade specifications, delivery port..." 
+                class="w-full bg-[#FAF9F5] hover:bg-white focus:bg-white border border-[#E7EAF0] focus:border-gold rounded-xl pl-10 pr-3.5 py-2.5 text-xs text-charcoal placeholder-stategrey/50 focus:outline-none focus:ring-4 focus:ring-gold/15 transition-all duration-200 shadow-sm resize-none"
+              ></textarea>
+            </div>
+          </div>
+
+          <!-- Submit Button -->
+          <button 
+            type="submit" 
+            id="modalSubmitBtn" 
+            class="btn-lets-go relative overflow-hidden w-full py-3 rounded-xl font-black text-xs uppercase tracking-wider flex items-center justify-center gap-2 cursor-pointer shadow-md transition-all active:scale-[0.99]"
+          >
+            <div class="animate-shine"></div>
+            <span>SUBMIT QUOTE REQUEST</span>
+            <span class="text-xs font-bold">↗</span>
+          </button>
+
+          <!-- Dynamic Feedback Notices -->
+          <div id="modalSuccessMsg" class="hidden p-3 rounded-xl bg-emerald-50 border border-emerald-300 text-emerald-800 text-xs flex items-center gap-2.5 shadow-sm">
+            <svg class="w-4 h-4 text-emerald-600 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path>
+            </svg>
+            <div>
+              <span class="font-bold">Quote Request Submitted!</span> RSK Traders will contact you within 24 hours.
+            </div>
+          </div>
+
+          <div id="modalErrorMsg" class="hidden p-3 rounded-xl bg-rose-50 border border-rose-300 text-rose-800 text-xs flex items-center gap-2.5 shadow-sm">
+            <svg class="w-4 h-4 text-rose-600 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+            <div>
+              <span class="font-bold">Failed to submit.</span> Please check your connection or contact via WhatsApp.
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
   <!-- Leaflet Map JS -->
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
@@ -4006,7 +4101,7 @@
         splash.classList.add('hide-splash');
         setTimeout(() => {
           if (splash.parentNode) splash.parentNode.removeChild(splash);
-        }, 550);
+        }, 800);
       }
     }
 
@@ -4060,12 +4155,35 @@
       const targetPos = target.getBoundingClientRect().top + window.pageYOffset - offset;
       window.scrollTo({ top: targetPos, behavior: 'smooth' });
 
+      // Update URL hash & push virtual pageview for GTM / Analytics
+      if (window.history && window.history.pushState) {
+        window.history.pushState(null, '', selector);
+      }
+      if (window.dataLayer) {
+        window.dataLayer.push({
+          event: 'page_view',
+          page_path: window.location.pathname + selector,
+          page_title: document.title
+        });
+      }
+
       // Close mobile drawer if open
       const mobileMenu = document.getElementById('mobileMenu');
       if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
         mobileMenu.classList.add('hidden');
       }
     }
+
+    // GTM Virtual Pageview Listener on browser back/forward navigation
+    window.addEventListener('popstate', () => {
+      if (window.dataLayer && window.location.hash) {
+        window.dataLayer.push({
+          event: 'page_view',
+          page_path: window.location.pathname + window.location.hash,
+          page_title: document.title
+        });
+      }
+    });
 
         // 3. Scroll Watcher: Progress Bar, Navbar Dynamics & Active Section Tracking
     let isScrollTicking = false;
