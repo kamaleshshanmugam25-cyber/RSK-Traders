@@ -115,6 +115,14 @@ f.parentNode.insertBefore(j,f);
 })(window,document,'script','dataLayer','GTM-NQK8GG9C');
 </script>
 <!-- End Google Tag Manager -->
+  <!-- Resource Hints & LCP Hero Preload -->
+  <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+  <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+  <link rel="dns-prefetch" href="https://unpkg.com">
+  <link rel="dns-prefetch" href="https://cdn.tailwindcss.com">
+  <link rel="preload" as="image" href="assets/aerial-cargo-768w.webp" type="image/webp" media="(max-width: 640px)" fetchpriority="high">
+  <link rel="preload" as="image" href="assets/aerial-cargo-1200w.webp" type="image/webp" media="(min-width: 641px) and (max-width: 1024px)" fetchpriority="high">
+  <link rel="preload" as="image" href="assets/aerial-cargo.webp" type="image/webp" media="(min-width: 1025px)" fetchpriority="high">
   <!-- Preconnect & Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -135,7 +143,7 @@ f.parentNode.insertBefore(j,f);
             brightgold: '#E8BD64',
             oceanblue: '#19C5E8',
             charcoal: '#263746',
-            stategrey: '#687787',
+            stategrey: '#546372',
             bordercolor: '#E7EAF0'
           },
           fontFamily: {
@@ -148,7 +156,9 @@ f.parentNode.insertBefore(j,f);
   </script>
 
   <!-- Leaflet CSS for 2D Map -->
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <!-- Leaflet CSS for 2D Map (Deferred for Non-Blocking Render) -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" media="print" onload="this.media='all'" />
+  <noscript><link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" /></noscript>
 
   <style>
 
@@ -1452,12 +1462,18 @@ style="display:none;visibility:hidden"></iframe>
       
       <!-- Logo Container with Smooth Zoom In / Zoom Out -->
       <div class="force-zoom-logo mb-6">
-        <img 
-          src="assets/logo.jpg" 
-          alt="RSK Traders Logo" 
-          onerror="this.onerror=null; this.src='https://placehold.co/160x160/0B1F33/C6A15B?text=RSK';" 
-          class="w-32 h-32 sm:w-36 sm:h-36 object-contain rounded-3xl shadow-xl border border-black/5"
-        >
+        <picture>
+          <source srcset="assets/logo.webp" type="image/webp">
+          <img 
+            src="assets/logo.jpg" 
+            alt="RSK Traders Logo" 
+            decoding="async"
+            width="1016"
+            height="1024"
+            onerror="this.onerror=null; this.src='https://placehold.co/160x160/0B1F33/C6A15B?text=RSK';" 
+            class="w-32 h-32 sm:w-36 sm:h-36 object-contain rounded-3xl shadow-xl border border-black/5"
+          >
+        </picture>
       </div>
 
       <!-- Company Name & Subtitle with Coordinated Zoom & Fade -->
@@ -1486,12 +1502,18 @@ style="display:none;visibility:hidden"></iframe>
         <!-- Brand Logo & Typographic Treatment -->
         <a href="#home" onclick="smoothScrollTo('#home', event)" class="flex items-center gap-2 sm:gap-2.5 shrink-0 group select-none">
           <div class="relative flex-shrink-0 transition-transform duration-300 group-hover:scale-105">
-            <img 
-              src="assets/logo.jpg" 
-              alt="RSK Traders Logo" 
-              onerror="this.onerror=null; this.src='https://placehold.co/44x44/071521/D6B574?text=RSK';" 
-              class="h-7 w-7 sm:h-8 sm:w-8 object-contain rounded-full p-0.5 border border-white/20 shadow-sm bg-white/10"
-            >
+            <picture>
+              <source srcset="assets/logo.webp" type="image/webp">
+              <img 
+                src="assets/logo.jpg" 
+                alt="RSK Traders Logo" 
+                decoding="async"
+                width="1016"
+                height="1024"
+                onerror="this.onerror=null; this.src='https://placehold.co/44x44/071521/D6B574?text=RSK';" 
+                class="h-7 w-7 sm:h-8 sm:w-8 object-contain rounded-full p-0.5 border border-white/20 shadow-sm bg-white/10"
+              >
+            </picture>
             <span class="absolute -bottom-0.5 -right-0.5 w-2 h-2 bg-emerald-400 border-2 border-[#0B1F33] rounded-full"></span>
           </div>
           <span id="navBrandText" class="font-display font-black text-white text-sm sm:text-base tracking-wider uppercase leading-none group-hover:text-gold transition-colors duration-300 whitespace-nowrap">
@@ -1513,7 +1535,7 @@ style="display:none;visibility:hidden"></iframe>
 
         <!-- Action Pill Button ('LET'S GO') & Mobile Toggle -->
         <div class="flex items-center gap-2 shrink-0">
-          <button onclick="openQuoteModal()" class="btn-lets-go relative overflow-hidden hidden sm:inline-flex px-4 sm:px-5 py-1.5 sm:py-2 rounded-full font-black text-[11px] sm:text-xs tracking-wider uppercase active:scale-95 items-center gap-1 cursor-pointer shadow-sm">
+          <button type="button" onclick="openQuoteModal()" class="btn-lets-go relative overflow-hidden hidden sm:inline-flex px-4 sm:px-5 py-1.5 sm:py-2 rounded-full font-black text-[11px] sm:text-xs tracking-wider uppercase active:scale-95 items-center gap-1 cursor-pointer shadow-sm">
             <div class="animate-shine"></div>
             <span>LET'S GO</span>
             <span class="text-xs ml-0.5 font-bold">↗</span>
@@ -1521,10 +1543,11 @@ style="display:none;visibility:hidden"></iframe>
 
           <!-- Mobile Drawer Toggle Button -->
           <button 
+            type="button" 
             id="menuToggleBtn" 
             onclick="toggleMobileMenu()" 
             aria-label="Toggle Navigation Menu" 
-            class="md:hidden w-8 h-8 rounded-full text-white/90 hover:text-white bg-white/10 hover:bg-white/20 border border-white/20 transition-all active:scale-95 flex items-center justify-center shrink-0 cursor-pointer shadow-sm"
+            class="md:hidden w-11 h-11 min-w-[44px] min-h-[44px] rounded-full text-white/90 hover:text-white bg-white/10 hover:bg-white/20 border border-white/20 transition-all active:scale-95 flex items-center justify-center shrink-0 cursor-pointer shadow-sm"
           >
             <svg id="hamburgerIcon" class="w-4 h-4 block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
             <svg id="closeIcon" class="w-4 h-4 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
@@ -1546,7 +1569,7 @@ style="display:none;visibility:hidden"></iframe>
           <a href="#contact" onclick="smoothScrollTo('#contact', event); toggleMobileMenu();" class="px-3 py-2 rounded-xl bg-white/5 hover:bg-white/10 hover:text-gold transition-colors text-center border border-white/10">Contact Us</a>
         </div>
         <div class="pt-2">
-          <button onclick="toggleMobileMenu(); openQuoteModal();" class="btn-lets-go w-full py-2.5 rounded-full font-black text-xs uppercase tracking-wider flex items-center justify-center gap-1.5 cursor-pointer">
+          <button type="button" onclick="toggleMobileMenu(); openQuoteModal();" class="btn-lets-go w-full py-2.5 rounded-full font-black text-xs uppercase tracking-wider flex items-center justify-center gap-1.5 cursor-pointer">
             <span>REQUEST A QUOTE</span>
             <span class="text-xs">↗</span>
           </button>
@@ -1562,12 +1585,21 @@ style="display:none;visibility:hidden"></iframe>
     
     <!-- Full-Size Aerial Cargo Vessel: 4K Ultra-HD Resolution & Cinematic Drift Animation -->
     <div class="absolute inset-0 z-0 overflow-hidden pointer-events-none">
-      <img 
-        src="assets/aerial-cargo.jpg" 
-        alt="RSK Traders Global Maritime Logistics and Container Ship" 
-        onerror="this.onerror=null; this.src='assets/hero-cargo.jpg';" 
-        class="w-full h-full object-cover object-center filter brightness-[0.96] contrast-[1.04] hero-bg-animated"
-      >
+      <picture class="w-full h-full block">
+        <source media="(max-width: 640px)" srcset="assets/aerial-cargo-768w.webp" type="image/webp">
+        <source media="(max-width: 1024px)" srcset="assets/aerial-cargo-1200w.webp" type="image/webp">
+        <source srcset="assets/aerial-cargo.webp" type="image/webp">
+        <img 
+          src="assets/aerial-cargo.jpg" 
+          alt="RSK Traders Global Maritime Logistics and Container Ship" 
+          fetchpriority="high"
+          decoding="async"
+          width="1920"
+          height="1080"
+          onerror="this.onerror=null; this.src='assets/hero-cargo.jpg';" 
+          class="w-full h-full object-cover object-center filter brightness-[0.96] contrast-[1.04] hero-bg-animated"
+        >
+      </picture>
       <!-- Luminous Maritime Ocean Gleam Animation -->
       <div class="ocean-gleam-overlay"></div>
 
@@ -1604,7 +1636,7 @@ style="display:none;visibility:hidden"></iframe>
       
       <!-- Action Buttons (Manrope 600, 14–16px - Req 2, 7, 9) -->
       <div class="hero-buttons-anim flex flex-wrap items-center justify-center gap-3 sm:gap-4">
-        <button onclick="openQuoteModal()" class="btn-primary rounded-full px-7 sm:px-8 py-3.5 tracking-wide shadow-lg transition-all flex items-center gap-2 group cursor-pointer hover:shadow-glowgold">
+        <button type="button" onclick="openQuoteModal()" class="btn-primary rounded-full px-7 sm:px-8 py-3.5 tracking-wide shadow-lg transition-all flex items-center gap-2 group cursor-pointer hover:shadow-glowgold">
           <span>Get a Quote</span>
           <span class="text-sm transition-transform group-hover:translate-x-0.5">↗</span>
         </button>
@@ -1714,12 +1746,19 @@ style="display:none;visibility:hidden"></iframe>
           <!-- Founder Card -->
           <div class="luxury-card rounded-3xl p-6 flex items-center gap-5 group">
             <div class="relative shrink-0 overflow-hidden rounded-2xl w-24 h-28 sm:w-28 sm:h-32 bg-warmivory border border-black/10">
-              <img 
-                loading="lazy" src="assets/founder.jpg" 
-                alt="Founder and Managing Director of RSK Traders Trichy" 
-                onerror="this.onerror=null; this.src='https://placehold.co/120x140/FFFFFF/D6B574?text=Founder';"
-                class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
-              >
+              <picture>
+                <source srcset="assets/founder.webp" type="image/webp">
+                <img 
+                  loading="lazy" 
+                  decoding="async"
+                  width="823"
+                  height="1003"
+                  src="assets/founder.jpg" 
+                  alt="Founder and Managing Director of RSK Traders Trichy" 
+                  onerror="this.onerror=null; this.src='https://placehold.co/120x140/FFFFFF/D6B574?text=Founder';"
+                  class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
+                >
+              </picture>
             </div>
             <div class="space-y-1">
               <span class="text-[10px] font-bold text-gold uppercase tracking-wider block">Founder & Managing Director</span>
@@ -1739,12 +1778,19 @@ style="display:none;visibility:hidden"></iframe>
           <!-- Co-Founder Card -->
           <div class="luxury-card rounded-3xl p-6 flex items-center gap-5 group">
             <div class="relative shrink-0 overflow-hidden rounded-2xl w-24 h-28 sm:w-28 sm:h-32 bg-warmivory border border-black/10">
-              <img 
-                src="assets/co_founder.png" 
-                alt="Co-Founder and Operations Director of RSK Traders" 
-                onerror="this.onerror=null; this.src='https://placehold.co/120x140/FFFFFF/D6B574?text=Co-Founder';"
-                class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
-              >
+              <picture>
+                <source srcset="assets/co_founder.webp" type="image/webp">
+                <img 
+                  loading="lazy"
+                  decoding="async"
+                  width="841"
+                  height="1264"
+                  src="assets/co_founder.png" 
+                  alt="Co-Founder and Operations Director of RSK Traders" 
+                  onerror="this.onerror=null; this.src='https://placehold.co/120x140/FFFFFF/D6B574?text=Co-Founder';"
+                  class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
+                >
+              </picture>
             </div>
             <div class="space-y-1">
               <span class="text-[10px] font-bold text-gold uppercase tracking-wider block">Co-Founder & Director of Operations</span>
@@ -1806,11 +1852,18 @@ style="display:none;visibility:hidden"></iframe>
           <div>
             <!-- Image Window -->
             <div class="relative h-48 sm:h-52 w-full overflow-hidden bg-midnight">
-              <img 
-                loading="lazy" src="assets/ocean-port.jpg" 
-                alt="RSK Traders Ocean Freight & Container Port Terminal" 
-                class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500 image-zoom"
-              >
+              <picture>
+                <source srcset="assets/ocean-port.webp" type="image/webp">
+                <img 
+                  loading="lazy" 
+                  decoding="async"
+                  width="1007"
+                  height="547"
+                  src="assets/ocean-port.jpg" 
+                  alt="RSK Traders Ocean Freight & Container Port Terminal" 
+                  class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500 image-zoom"
+                >
+              </picture>
               <div class="absolute inset-0 bg-gradient-to-t from-midnight/85 via-black/20 to-transparent"></div>
               <div class="absolute top-3 left-3 small-label px-2.5 py-1 rounded-full bg-black/60 backdrop-blur-md border border-white/20 text-white text-[10px]">
                 ✦ Port Terminal
@@ -1841,7 +1894,7 @@ style="display:none;visibility:hidden"></iframe>
             </div>
           </div>
           <div class="p-6 pt-0 mt-2 border-t border-black/[0.06]">
-            <button onclick="openQuoteModal('Ocean Freight')" class="btn-action inline-flex items-center gap-1.5 text-xs font-semibold text-gold hover:text-gold-hover transition-all group-hover:translate-x-1 cursor-pointer">
+            <button type="button" onclick="openQuoteModal('Ocean Freight')" class="btn-action inline-flex items-center gap-1.5 text-xs font-semibold text-gold hover:text-gold-hover transition-all group-hover:translate-x-1 cursor-pointer">
               <span>Book Ocean Freight</span>
               <span>↗</span>
             </button>
@@ -1853,11 +1906,18 @@ style="display:none;visibility:hidden"></iframe>
           <div>
             <!-- Image Window -->
             <div class="relative h-48 sm:h-52 w-full overflow-hidden bg-midnight">
-              <img 
-                src="assets/air-cargo.jpg" 
-                alt="RSK Traders Air Freight Cargo Expedited Pallet Loading" 
-                class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500 image-zoom"
-              >
+              <picture>
+                <source srcset="assets/air-cargo.webp" type="image/webp">
+                <img 
+                  loading="lazy"
+                  decoding="async"
+                  width="967"
+                  height="683"
+                  src="assets/air-cargo.jpg" 
+                  alt="RSK Traders Air Freight Cargo Expedited Pallet Loading" 
+                  class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500 image-zoom"
+                >
+              </picture>
               <div class="absolute inset-0 bg-gradient-to-t from-midnight/85 via-black/20 to-transparent"></div>
               <div class="absolute top-3 left-3 small-label px-2.5 py-1 rounded-full bg-black/60 backdrop-blur-md border border-white/20 text-white text-[10px]">
                 ✦ Priority Cargo
@@ -1888,7 +1948,7 @@ style="display:none;visibility:hidden"></iframe>
             </div>
           </div>
           <div class="p-6 pt-0 mt-2 border-t border-black/[0.06]">
-            <button onclick="openQuoteModal('Air Freight')" class="btn-action inline-flex items-center gap-1.5 text-xs font-semibold text-gold hover:text-gold-hover transition-all group-hover:translate-x-1 cursor-pointer">
+            <button type="button" onclick="openQuoteModal('Air Freight')" class="btn-action inline-flex items-center gap-1.5 text-xs font-semibold text-gold hover:text-gold-hover transition-all group-hover:translate-x-1 cursor-pointer">
               <span>Book Air Cargo</span>
               <span>↗</span>
             </button>
@@ -1900,11 +1960,18 @@ style="display:none;visibility:hidden"></iframe>
           <div>
             <!-- Image Window -->
             <div class="relative h-48 sm:h-52 w-full overflow-hidden bg-midnight">
-              <img 
-                src="assets/inland-trucking.jpg" 
-                alt="RSK Traders Inland Container Trucking & Intermodal Drayage" 
-                class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500 image-zoom"
-              >
+              <picture>
+                <source srcset="assets/inland-trucking.webp" type="image/webp">
+                <img 
+                  loading="lazy"
+                  decoding="async"
+                  width="994"
+                  height="559"
+                  src="assets/inland-trucking.jpg" 
+                  alt="RSK Traders Inland Container Trucking & Intermodal Drayage" 
+                  class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500 image-zoom"
+                >
+              </picture>
               <div class="absolute inset-0 bg-gradient-to-t from-midnight/85 via-black/20 to-transparent"></div>
               <div class="absolute top-3 left-3 small-label px-2.5 py-1 rounded-full bg-black/60 backdrop-blur-md border border-white/20 text-white text-[10px]">
                 ✦ Road & Rail
@@ -1935,7 +2002,7 @@ style="display:none;visibility:hidden"></iframe>
             </div>
           </div>
           <div class="p-6 pt-0 mt-2 border-t border-black/[0.06]">
-            <button onclick="openQuoteModal('Inland Logistics')" class="btn-action inline-flex items-center gap-1.5 text-xs font-semibold text-gold hover:text-gold-hover transition-all group-hover:translate-x-1 cursor-pointer">
+            <button type="button" onclick="openQuoteModal('Inland Logistics')" class="btn-action inline-flex items-center gap-1.5 text-xs font-semibold text-gold hover:text-gold-hover transition-all group-hover:translate-x-1 cursor-pointer">
               <span>Coordinate Drayage</span>
               <span>↗</span>
             </button>
@@ -1947,11 +2014,18 @@ style="display:none;visibility:hidden"></iframe>
           <div>
             <!-- Image Window -->
             <div class="relative h-48 sm:h-52 w-full overflow-hidden bg-midnight">
-              <img 
-                src="assets/warehouse.jpg" 
-                alt="RSK Traders High-Bay Warehousing & Cold Storage" 
-                class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500 image-zoom"
-              >
+              <picture>
+                <source srcset="assets/warehouse.webp" type="image/webp">
+                <img 
+                  loading="lazy"
+                  decoding="async"
+                  width="1001"
+                  height="653"
+                  src="assets/warehouse.jpg" 
+                  alt="RSK Traders High-Bay Warehousing & Cold Storage" 
+                  class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500 image-zoom"
+                >
+              </picture>
               <div class="absolute inset-0 bg-gradient-to-t from-midnight/85 via-black/20 to-transparent"></div>
               <div class="absolute top-3 left-3 small-label px-2.5 py-1 rounded-full bg-black/60 backdrop-blur-md border border-white/20 text-white text-[10px]">
                 ✦ Staging Hub
@@ -1982,7 +2056,7 @@ style="display:none;visibility:hidden"></iframe>
             </div>
           </div>
           <div class="p-6 pt-0 mt-2 border-t border-black/[0.06]">
-            <button onclick="openQuoteModal('Warehousing & Packaging')" class="btn-action inline-flex items-center gap-1.5 text-xs font-semibold text-gold hover:text-gold-hover transition-all group-hover:translate-x-1 cursor-pointer">
+            <button type="button" onclick="openQuoteModal('Warehousing & Packaging')" class="btn-action inline-flex items-center gap-1.5 text-xs font-semibold text-gold hover:text-gold-hover transition-all group-hover:translate-x-1 cursor-pointer">
               <span>Request Storage</span>
               <span>↗</span>
             </button>
@@ -2064,12 +2138,19 @@ style="display:none;visibility:hidden"></iframe>
           <div>
             <!-- Image Window -->
             <div class="relative h-48 sm:h-52 w-full overflow-hidden bg-midnight">
-              <img 
-                loading="lazy" src="assets/industry-agriculture.jpg" 
-                alt="RSK Traders Agriculture and Fresh Produce Export" 
-                class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500 image-zoom"
-                onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1610348725531-843dff563e2c?auto=format&fit=crop&w=800&q=85';"
-              >
+              <picture>
+                <source srcset="assets/industry-agriculture.webp" type="image/webp">
+                <img 
+                  loading="lazy" 
+                  decoding="async"
+                  width="800"
+                  height="533"
+                  src="assets/industry-agriculture.jpg" 
+                  alt="RSK Traders Agriculture and Fresh Produce Export" 
+                  class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500 image-zoom"
+                  onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1610348725531-843dff563e2c?auto=format&fit=crop&w=800&q=85';"
+                >
+              </picture>
               <div class="absolute inset-0 bg-gradient-to-t from-midnight/85 via-black/25 to-transparent"></div>
               <div class="absolute top-3 left-3 small-label px-2.5 py-1 rounded-full bg-black/60 backdrop-blur-md border border-white/20 text-white text-[10px]">
                 ✦ Farm-to-Port
@@ -2100,7 +2181,7 @@ style="display:none;visibility:hidden"></iframe>
             </div>
           </div>
           <div class="p-6 pt-0 mt-2 border-t border-black/[0.06]">
-            <button onclick="openQuoteModal('Agriculture Export')" class="btn-action inline-flex items-center gap-1.5 text-xs font-semibold text-gold hover:text-gold-hover transition-all group-hover:translate-x-1 cursor-pointer">
+            <button type="button" onclick="openQuoteModal('Agriculture Export')" class="btn-action inline-flex items-center gap-1.5 text-xs font-semibold text-gold hover:text-gold-hover transition-all group-hover:translate-x-1 cursor-pointer">
               <span>Inquire Agriculture</span>
               <span>↗</span>
             </button>
@@ -2112,12 +2193,19 @@ style="display:none;visibility:hidden"></iframe>
           <div>
             <!-- Image Window -->
             <div class="relative h-48 sm:h-52 w-full overflow-hidden bg-midnight">
-              <img 
-                src="assets/industry-manufacturing.jpg" 
-                alt="RSK Traders Precision Manufacturing and Industrial Goods Freight" 
-                class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500 image-zoom"
-                onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=800&q=85';"
-              >
+              <picture>
+                <source srcset="assets/industry-manufacturing.webp" type="image/webp">
+                <img 
+                  loading="lazy"
+                  decoding="async"
+                  width="800"
+                  height="533"
+                  src="assets/industry-manufacturing.jpg" 
+                  alt="RSK Traders Precision Manufacturing and Industrial Goods Freight" 
+                  class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500 image-zoom"
+                  onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=800&q=85';"
+                >
+              </picture>
               <div class="absolute inset-0 bg-gradient-to-t from-midnight/85 via-black/25 to-transparent"></div>
               <div class="absolute top-3 left-3 small-label px-2.5 py-1 rounded-full bg-black/60 backdrop-blur-md border border-white/20 text-white text-[10px]">
                 ✦ Precision Fabrications
@@ -2148,7 +2236,7 @@ style="display:none;visibility:hidden"></iframe>
             </div>
           </div>
           <div class="p-6 pt-0 mt-2 border-t border-black/[0.06]">
-            <button onclick="openQuoteModal('Manufacturing Logistics')" class="btn-action inline-flex items-center gap-1.5 text-xs font-semibold text-gold hover:text-gold-hover transition-all group-hover:translate-x-1 cursor-pointer">
+            <button type="button" onclick="openQuoteModal('Manufacturing Logistics')" class="btn-action inline-flex items-center gap-1.5 text-xs font-semibold text-gold hover:text-gold-hover transition-all group-hover:translate-x-1 cursor-pointer">
               <span>Inquire Manufacturing</span>
               <span>↗</span>
             </button>
@@ -2160,12 +2248,19 @@ style="display:none;visibility:hidden"></iframe>
           <div>
             <!-- Image Window -->
             <div class="relative h-48 sm:h-52 w-full overflow-hidden bg-midnight">
-              <img 
-                src="assets/industry-textiles.jpg" 
-                alt="RSK Traders Textiles and Finished Garments Supply Chain" 
-                class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500 image-zoom"
-                onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1606744837616-56c9a5c6a6eb?auto=format&fit=crop&w=800&q=85';"
-              >
+              <picture>
+                <source srcset="assets/industry-textiles.webp" type="image/webp">
+                <img 
+                  loading="lazy"
+                  decoding="async"
+                  width="800"
+                  height="533"
+                  src="assets/industry-textiles.jpg" 
+                  alt="RSK Traders Textiles and Finished Garments Supply Chain" 
+                  class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500 image-zoom"
+                  onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1606744837616-56c9a5c6a6eb?auto=format&fit=crop&w=800&q=85';"
+                >
+              </picture>
               <div class="absolute inset-0 bg-gradient-to-t from-midnight/85 via-black/25 to-transparent"></div>
               <div class="absolute top-3 left-3 small-label px-2.5 py-1 rounded-full bg-black/60 backdrop-blur-md border border-white/20 text-white text-[10px]">
                 ✦ Woven & Knits
@@ -2196,7 +2291,7 @@ style="display:none;visibility:hidden"></iframe>
             </div>
           </div>
           <div class="p-6 pt-0 mt-2 border-t border-black/[0.06]">
-            <button onclick="openQuoteModal('Textiles & Garments')" class="btn-action inline-flex items-center gap-1.5 text-xs font-semibold text-gold hover:text-gold-hover transition-all group-hover:translate-x-1 cursor-pointer">
+            <button type="button" onclick="openQuoteModal('Textiles & Garments')" class="btn-action inline-flex items-center gap-1.5 text-xs font-semibold text-gold hover:text-gold-hover transition-all group-hover:translate-x-1 cursor-pointer">
               <span>Inquire Textiles</span>
               <span>↗</span>
             </button>
@@ -2208,12 +2303,19 @@ style="display:none;visibility:hidden"></iframe>
           <div>
             <!-- Image Window -->
             <div class="relative h-48 sm:h-52 w-full overflow-hidden bg-midnight">
-              <img 
-                src="assets/industry-automobiles.jpg" 
-                alt="RSK Traders Automotive Parts and Ancillary Logistics" 
-                class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500 image-zoom"
-                onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1563720223185-11003d516935?auto=format&fit=crop&w=800&q=85';"
-              >
+              <picture>
+                <source srcset="assets/industry-automobiles.webp" type="image/webp">
+                <img 
+                  loading="lazy"
+                  decoding="async"
+                  width="800"
+                  height="533"
+                  src="assets/industry-automobiles.jpg" 
+                  alt="RSK Traders Automotive Parts and Ancillary Logistics" 
+                  class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500 image-zoom"
+                  onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1563720223185-11003d516935?auto=format&fit=crop&w=800&q=85';"
+                >
+              </picture>
               <div class="absolute inset-0 bg-gradient-to-t from-midnight/85 via-black/25 to-transparent"></div>
               <div class="absolute top-3 left-3 small-label px-2.5 py-1 rounded-full bg-black/60 backdrop-blur-md border border-white/20 text-white text-[10px]">
                 ✦ Auto Ancillaries
@@ -2244,7 +2346,7 @@ style="display:none;visibility:hidden"></iframe>
             </div>
           </div>
           <div class="p-6 pt-0 mt-2 border-t border-black/[0.06]">
-            <button onclick="openQuoteModal('Automotive Freight')" class="btn-action inline-flex items-center gap-1.5 text-xs font-semibold text-gold hover:text-gold-hover transition-all group-hover:translate-x-1 cursor-pointer">
+            <button type="button" onclick="openQuoteModal('Automotive Freight')" class="btn-action inline-flex items-center gap-1.5 text-xs font-semibold text-gold hover:text-gold-hover transition-all group-hover:translate-x-1 cursor-pointer">
               <span>Inquire Automobiles</span>
               <span>↗</span>
             </button>
@@ -2256,12 +2358,19 @@ style="display:none;visibility:hidden"></iframe>
           <div>
             <!-- Image Window -->
             <div class="relative h-48 sm:h-52 w-full overflow-hidden bg-midnight">
-              <img 
-                src="assets/industry-electronics.jpg" 
-                alt="RSK Traders High-Tech Electronics and Circuit Hardware Freight" 
-                class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500 image-zoom"
-                onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=800&q=85';"
-              >
+              <picture>
+                <source srcset="assets/industry-electronics.webp" type="image/webp">
+                <img 
+                  loading="lazy"
+                  decoding="async"
+                  width="800"
+                  height="533"
+                  src="assets/industry-electronics.jpg" 
+                  alt="RSK Traders High-Tech Electronics and Circuit Hardware Freight" 
+                  class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500 image-zoom"
+                  onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=800&q=85';"
+                >
+              </picture>
               <div class="absolute inset-0 bg-gradient-to-t from-midnight/85 via-black/25 to-transparent"></div>
               <div class="absolute top-3 left-3 small-label px-2.5 py-1 rounded-full bg-black/60 backdrop-blur-md border border-white/20 text-white text-[10px]">
                 ✦ Cleanroom Tech
@@ -2292,7 +2401,7 @@ style="display:none;visibility:hidden"></iframe>
             </div>
           </div>
           <div class="p-6 pt-0 mt-2 border-t border-black/[0.06]">
-            <button onclick="openQuoteModal('Electronics Logistics')" class="btn-action inline-flex items-center gap-1.5 text-xs font-semibold text-gold hover:text-gold-hover transition-all group-hover:translate-x-1 cursor-pointer">
+            <button type="button" onclick="openQuoteModal('Electronics Logistics')" class="btn-action inline-flex items-center gap-1.5 text-xs font-semibold text-gold hover:text-gold-hover transition-all group-hover:translate-x-1 cursor-pointer">
               <span>Inquire Electronics</span>
               <span>↗</span>
             </button>
@@ -2304,12 +2413,19 @@ style="display:none;visibility:hidden"></iframe>
           <div>
             <!-- Image Window -->
             <div class="relative h-48 sm:h-52 w-full overflow-hidden bg-midnight">
-              <img 
-                src="assets/industry-machinery.jpg" 
-                alt="RSK Traders Heavy Machinery and Industrial Plant Logistics" 
-                class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500 image-zoom"
-                onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=800&q=85';"
-              >
+              <picture>
+                <source srcset="assets/industry-machinery.webp" type="image/webp">
+                <img 
+                  loading="lazy"
+                  decoding="async"
+                  width="800"
+                  height="533"
+                  src="assets/industry-machinery.jpg" 
+                  alt="RSK Traders Heavy Machinery and Industrial Plant Logistics" 
+                  class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500 image-zoom"
+                  onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=800&q=85';"
+                >
+              </picture>
               <div class="absolute inset-0 bg-gradient-to-t from-midnight/85 via-black/25 to-transparent"></div>
               <div class="absolute top-3 left-3 small-label px-2.5 py-1 rounded-full bg-black/60 backdrop-blur-md border border-white/20 text-white text-[10px]">
                 ✦ Heavy Equipment
@@ -2340,7 +2456,7 @@ style="display:none;visibility:hidden"></iframe>
             </div>
           </div>
           <div class="p-6 pt-0 mt-2 border-t border-black/[0.06]">
-            <button onclick="openQuoteModal('Machinery Cargo')" class="btn-action inline-flex items-center gap-1.5 text-xs font-semibold text-gold hover:text-gold-hover transition-all group-hover:translate-x-1 cursor-pointer">
+            <button type="button" onclick="openQuoteModal('Machinery Cargo')" class="btn-action inline-flex items-center gap-1.5 text-xs font-semibold text-gold hover:text-gold-hover transition-all group-hover:translate-x-1 cursor-pointer">
               <span>Inquire Machinery</span>
               <span>↗</span>
             </button>
@@ -2351,12 +2467,19 @@ style="display:none;visibility:hidden"></iframe>
         <div class="luxury-card rounded-3xl overflow-hidden flex flex-col sm:flex-row justify-between sm:col-span-2 lg:col-span-3 xl:col-span-2 group reveal-base hover:shadow-2xl transition-all duration-300">
           <!-- Image Window -->
           <div class="relative h-52 sm:h-auto sm:w-5/12 overflow-hidden bg-midnight shrink-0">
-            <img 
-              src="assets/industry-commercial.jpg" 
-              alt="RSK Traders Allied Commercial Sectors and Global Trade Freight" 
-              class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500 image-zoom"
-              onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=800&q=85';"
-            >
+            <picture>
+              <source srcset="assets/industry-commercial.webp" type="image/webp">
+              <img 
+                loading="lazy"
+                decoding="async"
+                width="800"
+                height="533"
+                src="assets/industry-commercial.jpg" 
+                alt="RSK Traders Allied Commercial Sectors and Global Trade Freight" 
+                class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500 image-zoom"
+                onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=800&q=85';"
+              >
+            </picture>
             <div class="absolute inset-0 bg-gradient-to-t sm:bg-gradient-to-r from-midnight/85 via-black/25 to-transparent"></div>
             <div class="absolute top-3 left-3 small-label px-2.5 py-1 rounded-full bg-black/60 backdrop-blur-md border border-white/20 text-white text-[10px]">
               ✦ Global Trade
@@ -2393,7 +2516,7 @@ style="display:none;visibility:hidden"></iframe>
 
             <div class="pt-5 mt-4 border-t border-black/[0.06] flex items-center justify-between">
               <span class="text-[11px] text-stategrey">Custom corporate solutions available</span>
-              <button onclick="openQuoteModal('Custom Trade')" class="btn-action inline-flex items-center gap-1.5 text-xs font-semibold text-gold hover:text-gold-hover transition-all group-hover:translate-x-1 cursor-pointer">
+              <button type="button" onclick="openQuoteModal('Custom Trade')" class="btn-action inline-flex items-center gap-1.5 text-xs font-semibold text-gold hover:text-gold-hover transition-all group-hover:translate-x-1 cursor-pointer">
                 <span>Inquire Custom Trade</span>
                 <span>↗</span>
               </button>
@@ -2434,13 +2557,19 @@ style="display:none;visibility:hidden"></iframe>
           <div>
             <!-- Image Window -->
             <div class="relative h-48 sm:h-52 w-full overflow-hidden bg-midnight image-zoom-box">
-              <img 
-                loading="lazy"
-                src="assets/product-vegetables.jpg" 
-                alt="RSK Traders Fresh Vegetables Export Produce" 
-                class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500 image-zoom"
-                onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=800&q=85';"
-              >
+              <picture>
+                <source srcset="assets/product-vegetables.webp" type="image/webp">
+                <img 
+                  loading="lazy"
+                  decoding="async"
+                  width="800"
+                  height="533"
+                  src="assets/product-vegetables.jpg" 
+                  alt="RSK Traders Fresh Vegetables Export Produce" 
+                  class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500 image-zoom"
+                  onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=800&q=85';"
+                >
+              </picture>
               <div class="absolute inset-0 bg-gradient-to-t from-midnight/85 via-black/25 to-transparent"></div>
               <div class="absolute top-3 left-3 small-label px-2.5 py-1 rounded-full bg-black/60 backdrop-blur-md border border-white/20 text-white text-[10px]">
                 ✦ Farm-Fresh
@@ -2475,7 +2604,7 @@ style="display:none;visibility:hidden"></iframe>
             </div>
           </div>
           <div class="p-6 pt-0 mt-2 border-t border-black/[0.06]">
-            <button onclick="openQuoteModal('Fresh Vegetables Export')" class="btn-action inline-flex items-center gap-1.5 text-xs font-semibold text-gold hover:text-gold-hover transition-all group-hover:translate-x-1 cursor-pointer">
+            <button type="button" onclick="openQuoteModal('Fresh Vegetables Export')" class="btn-action inline-flex items-center gap-1.5 text-xs font-semibold text-gold hover:text-gold-hover transition-all group-hover:translate-x-1 cursor-pointer">
               <span>Inquire Vegetables Specs</span>
               <span>↗</span>
             </button>
@@ -2487,13 +2616,19 @@ style="display:none;visibility:hidden"></iframe>
           <div>
             <!-- Image Window -->
             <div class="relative h-48 sm:h-52 w-full overflow-hidden bg-midnight image-zoom-box">
-              <img 
-                loading="lazy"
-                src="assets/product-fruits.jpg" 
-                alt="RSK Traders Fresh Fruits Export Bananas Pomegranates" 
-                class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500 image-zoom"
-                onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1619566636858-adf3ef46400b?auto=format&fit=crop&w=800&q=85';"
-              >
+              <picture>
+                <source srcset="assets/product-fruits.webp" type="image/webp">
+                <img 
+                  loading="lazy"
+                  decoding="async"
+                  width="800"
+                  height="533"
+                  src="assets/product-fruits.jpg" 
+                  alt="RSK Traders Fresh Fruits Export Bananas Pomegranates" 
+                  class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500 image-zoom"
+                  onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1619566636858-adf3ef46400b?auto=format&fit=crop&w=800&q=85';"
+                >
+              </picture>
               <div class="absolute inset-0 bg-gradient-to-t from-midnight/85 via-black/25 to-transparent"></div>
               <div class="absolute top-3 left-3 small-label px-2.5 py-1 rounded-full bg-black/60 backdrop-blur-md border border-white/20 text-white text-[10px]">
                 ✦ Orchard Graded
@@ -2528,7 +2663,7 @@ style="display:none;visibility:hidden"></iframe>
             </div>
           </div>
           <div class="p-6 pt-0 mt-2 border-t border-black/[0.06]">
-            <button onclick="openQuoteModal('Fresh Fruits Export')" class="btn-action inline-flex items-center gap-1.5 text-xs font-semibold text-gold hover:text-gold-hover transition-all group-hover:translate-x-1 cursor-pointer">
+            <button type="button" onclick="openQuoteModal('Fresh Fruits Export')" class="btn-action inline-flex items-center gap-1.5 text-xs font-semibold text-gold hover:text-gold-hover transition-all group-hover:translate-x-1 cursor-pointer">
               <span>Inquire Fruits Specs</span>
               <span>↗</span>
             </button>
@@ -2540,13 +2675,19 @@ style="display:none;visibility:hidden"></iframe>
           <div>
             <!-- Image Window -->
             <div class="relative h-48 sm:h-52 w-full overflow-hidden bg-midnight image-zoom-box">
-              <img 
-                loading="lazy"
-                src="assets/product-spices.jpg" 
-                alt="RSK Traders Premium Indian Spices Turmeric Cardamom Pepper" 
-                class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500 image-zoom"
-                onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1596040033229-a9821ebd058d?auto=format&fit=crop&w=800&q=85';"
-              >
+              <picture>
+                <source srcset="assets/product-spices.webp" type="image/webp">
+                <img 
+                  loading="lazy"
+                  decoding="async"
+                  width="800"
+                  height="533"
+                  src="assets/product-spices.jpg" 
+                  alt="RSK Traders Premium Indian Spices Turmeric Cardamom Pepper" 
+                  class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500 image-zoom"
+                  onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1596040033229-a9821ebd058d?auto=format&fit=crop&w=800&q=85';"
+                >
+              </picture>
               <div class="absolute inset-0 bg-gradient-to-t from-midnight/85 via-black/25 to-transparent"></div>
               <div class="absolute top-3 left-3 small-label px-2.5 py-1 rounded-full bg-black/60 backdrop-blur-md border border-white/20 text-white text-[10px]">
                 ✦ Aromatic & Pure
@@ -2581,7 +2722,7 @@ style="display:none;visibility:hidden"></iframe>
             </div>
           </div>
           <div class="p-6 pt-0 mt-2 border-t border-black/[0.06]">
-            <button onclick="openQuoteModal('Spices Export')" class="btn-action inline-flex items-center gap-1.5 text-xs font-semibold text-gold hover:text-gold-hover transition-all group-hover:translate-x-1 cursor-pointer">
+            <button type="button" onclick="openQuoteModal('Spices Export')" class="btn-action inline-flex items-center gap-1.5 text-xs font-semibold text-gold hover:text-gold-hover transition-all group-hover:translate-x-1 cursor-pointer">
               <span>Inquire Spices Specs</span>
               <span>↗</span>
             </button>
@@ -2593,13 +2734,19 @@ style="display:none;visibility:hidden"></iframe>
           <div>
             <!-- Image Window -->
             <div class="relative h-48 sm:h-52 w-full overflow-hidden bg-midnight image-zoom-box">
-              <img 
-                loading="lazy"
-                src="assets/product-rice.jpg" 
-                alt="RSK Traders Export Grains Ponni Boiled Rice Basmati" 
-                class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500 image-zoom"
-                onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1586201375761-83865001e31c?auto=format&fit=crop&w=800&q=85';"
-              >
+              <picture>
+                <source srcset="assets/product-rice.webp" type="image/webp">
+                <img 
+                  loading="lazy"
+                  decoding="async"
+                  width="800"
+                  height="533"
+                  src="assets/product-rice.jpg" 
+                  alt="RSK Traders Export Grains Ponni Boiled Rice Basmati" 
+                  class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500 image-zoom"
+                  onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1586201375761-83865001e31c?auto=format&fit=crop&w=800&q=85';"
+                >
+              </picture>
               <div class="absolute inset-0 bg-gradient-to-t from-midnight/85 via-black/25 to-transparent"></div>
               <div class="absolute top-3 left-3 small-label px-2.5 py-1 rounded-full bg-black/60 backdrop-blur-md border border-white/20 text-white text-[10px]">
                 ✦ Optical Sorted
@@ -2634,7 +2781,7 @@ style="display:none;visibility:hidden"></iframe>
             </div>
           </div>
           <div class="p-6 pt-0 mt-2 border-t border-black/[0.06]">
-            <button onclick="openQuoteModal('Rice Export')" class="btn-action inline-flex items-center gap-1.5 text-xs font-semibold text-gold hover:text-gold-hover transition-all group-hover:translate-x-1 cursor-pointer">
+            <button type="button" onclick="openQuoteModal('Rice Export')" class="btn-action inline-flex items-center gap-1.5 text-xs font-semibold text-gold hover:text-gold-hover transition-all group-hover:translate-x-1 cursor-pointer">
               <span>Inquire Rice Specs</span>
               <span>↗</span>
             </button>
@@ -2646,13 +2793,19 @@ style="display:none;visibility:hidden"></iframe>
           <div>
             <!-- Image Window -->
             <div class="relative h-48 sm:h-52 w-full overflow-hidden bg-midnight image-zoom-box">
-              <img 
-                loading="lazy"
-                src="assets/product-coconuts.jpg" 
-                alt="RSK Traders Dehusked Coconuts and Edible Copra Export" 
-                class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500 image-zoom"
-                onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1544378730-8b5104b18790?auto=format&fit=crop&w=800&q=85';"
-              >
+              <picture>
+                <source srcset="assets/product-coconuts.webp" type="image/webp">
+                <img 
+                  loading="lazy"
+                  decoding="async"
+                  width="800"
+                  height="533"
+                  src="assets/product-coconuts.jpg" 
+                  alt="RSK Traders Dehusked Coconuts and Edible Copra Export" 
+                  class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500 image-zoom"
+                  onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1544378730-8b5104b18790?auto=format&fit=crop&w=800&q=85';"
+                >
+              </picture>
               <div class="absolute inset-0 bg-gradient-to-t from-midnight/85 via-black/25 to-transparent"></div>
               <div class="absolute top-3 left-3 small-label px-2.5 py-1 rounded-full bg-black/60 backdrop-blur-md border border-white/20 text-white text-[10px]">
                 ✦ Plantation Pick
@@ -2687,7 +2840,7 @@ style="display:none;visibility:hidden"></iframe>
             </div>
           </div>
           <div class="p-6 pt-0 mt-2 border-t border-black/[0.06]">
-            <button onclick="openQuoteModal('Coconut Export')" class="btn-action inline-flex items-center gap-1.5 text-xs font-semibold text-gold hover:text-gold-hover transition-all group-hover:translate-x-1 cursor-pointer">
+            <button type="button" onclick="openQuoteModal('Coconut Export')" class="btn-action inline-flex items-center gap-1.5 text-xs font-semibold text-gold hover:text-gold-hover transition-all group-hover:translate-x-1 cursor-pointer">
               <span>Inquire Coconut Specs</span>
               <span>↗</span>
             </button>
@@ -2699,13 +2852,19 @@ style="display:none;visibility:hidden"></iframe>
           <div>
             <!-- Image Window -->
             <div class="relative h-48 sm:h-52 w-full overflow-hidden bg-midnight image-zoom-box">
-              <img 
-                loading="lazy"
-                src="assets/product-herbs.jpg" 
-                alt="RSK Traders Fresh Curry Leaves Moringa Herbal Botanicals" 
-                class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500 image-zoom"
-                onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1515543237350-b3eea1ec8082?auto=format&fit=crop&w=800&q=85';"
-              >
+              <picture>
+                <source srcset="assets/product-herbs.webp" type="image/webp">
+                <img 
+                  loading="lazy"
+                  decoding="async"
+                  width="800"
+                  height="533"
+                  src="assets/product-herbs.jpg" 
+                  alt="RSK Traders Fresh Curry Leaves Moringa Herbal Botanicals" 
+                  class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500 image-zoom"
+                  onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1515543237350-b3eea1ec8082?auto=format&fit=crop&w=800&q=85';"
+                >
+              </picture>
               <div class="absolute inset-0 bg-gradient-to-t from-midnight/85 via-black/25 to-transparent"></div>
               <div class="absolute top-3 left-3 small-label px-2.5 py-1 rounded-full bg-black/60 backdrop-blur-md border border-white/20 text-white text-[10px]">
                 ✦ Priority Botanical
@@ -2740,7 +2899,7 @@ style="display:none;visibility:hidden"></iframe>
             </div>
           </div>
           <div class="p-6 pt-0 mt-2 border-t border-black/[0.06]">
-            <button onclick="openQuoteModal('Herbs Export')" class="btn-action inline-flex items-center gap-1.5 text-xs font-semibold text-gold hover:text-gold-hover transition-all group-hover:translate-x-1 cursor-pointer">
+            <button type="button" onclick="openQuoteModal('Herbs Export')" class="btn-action inline-flex items-center gap-1.5 text-xs font-semibold text-gold hover:text-gold-hover transition-all group-hover:translate-x-1 cursor-pointer">
               <span>Inquire Herbs Specs</span>
               <span>↗</span>
             </button>
@@ -2810,12 +2969,18 @@ style="display:none;visibility:hidden"></iframe>
               </div>
 
               <div class="relative h-44 w-full overflow-hidden bg-midnight">
-                <img 
-                  loading="lazy" 
-                  src="assets/industry-agriculture.jpg" 
-                  alt="RSK Traders Direct Producer Sourcing" 
-                  class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500 image-zoom"
-                >
+                <picture>
+                  <source srcset="assets/industry-agriculture.webp" type="image/webp">
+                  <img 
+                    loading="lazy" 
+                    decoding="async"
+                    width="800"
+                    height="533"
+                    src="assets/industry-agriculture.jpg" 
+                    alt="RSK Traders Direct Producer Sourcing" 
+                    class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500 image-zoom"
+                  >
+                </picture>
                 <div class="absolute inset-0 bg-gradient-to-t from-midnight/80 via-transparent to-transparent"></div>
                 <div class="absolute bottom-2.5 left-3 text-white text-xs font-bold font-mono">
                   Sourcing & Procurement
@@ -2866,12 +3031,18 @@ style="display:none;visibility:hidden"></iframe>
               </div>
 
               <div class="relative h-44 w-full overflow-hidden bg-midnight">
-                <img 
-                  loading="lazy" 
-                  src="assets/warehouse.jpg" 
-                  alt="RSK Traders Export Cargo Handling and Drayage" 
-                  class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500 image-zoom"
-                >
+                <picture>
+                  <source srcset="assets/warehouse.webp" type="image/webp">
+                  <img 
+                    loading="lazy" 
+                    decoding="async"
+                    width="1001"
+                    height="653"
+                    src="assets/warehouse.jpg" 
+                    alt="RSK Traders Export Cargo Handling and Drayage" 
+                    class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500 image-zoom"
+                  >
+                </picture>
                 <div class="absolute inset-0 bg-gradient-to-t from-midnight/80 via-transparent to-transparent"></div>
                 <div class="absolute bottom-2.5 left-3 text-white text-xs font-bold font-mono">
                   Cargo Handling & Packaging
@@ -2922,12 +3093,18 @@ style="display:none;visibility:hidden"></iframe>
               </div>
 
               <div class="relative h-44 w-full overflow-hidden bg-midnight">
-                <img 
-                  loading="lazy" 
-                  src="assets/ocean-port.jpg" 
-                  alt="RSK Traders International Ocean and Air Shipping" 
-                  class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500 image-zoom"
-                >
+                <picture>
+                  <source srcset="assets/ocean-port.webp" type="image/webp">
+                  <img 
+                    loading="lazy" 
+                    decoding="async"
+                    width="1007"
+                    height="547"
+                    src="assets/ocean-port.jpg" 
+                    alt="RSK Traders International Ocean and Air Shipping" 
+                    class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500 image-zoom"
+                  >
+                </picture>
                 <div class="absolute inset-0 bg-gradient-to-t from-midnight/80 via-transparent to-transparent"></div>
                 <div class="absolute bottom-2.5 left-3 text-white text-xs font-bold font-mono">
                   Maritime & Air Freight
@@ -2978,12 +3155,18 @@ style="display:none;visibility:hidden"></iframe>
               </div>
 
               <div class="relative h-44 w-full overflow-hidden bg-midnight">
-                <img 
-                  loading="lazy" 
-                  src="assets/industry-commercial.jpg" 
-                  alt="RSK Traders Destination Port Clearance and Consignee Handover" 
-                  class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500 image-zoom"
-                >
+                <picture>
+                  <source srcset="assets/industry-commercial.webp" type="image/webp">
+                  <img 
+                    loading="lazy" 
+                    decoding="async"
+                    width="800"
+                    height="533"
+                    src="assets/industry-commercial.jpg" 
+                    alt="RSK Traders Destination Port Clearance and Consignee Handover" 
+                    class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500 image-zoom"
+                  >
+                </picture>
                 <div class="absolute inset-0 bg-gradient-to-t from-midnight/80 via-transparent to-transparent"></div>
                 <div class="absolute bottom-2.5 left-3 text-white text-xs font-bold font-mono">
                   Destination Discharge
@@ -3031,24 +3214,26 @@ style="display:none;visibility:hidden"></iframe>
 
           <!-- Slide Dots -->
           <div class="flex items-center gap-1.5" id="processSlideDots">
-            <button onclick="scrollProcessSlide(0)" class="process-dot w-6 h-1.5 rounded-full bg-gold transition-all cursor-pointer" aria-label="Go to Stage 1"></button>
-            <button onclick="scrollProcessSlide(1)" class="process-dot w-2 h-1.5 rounded-full bg-black/20 hover:bg-gold/60 transition-all cursor-pointer" aria-label="Go to Stage 2"></button>
-            <button onclick="scrollProcessSlide(2)" class="process-dot w-2 h-1.5 rounded-full bg-black/20 hover:bg-gold/60 transition-all cursor-pointer" aria-label="Go to Stage 3"></button>
-            <button onclick="scrollProcessSlide(3)" class="process-dot w-2 h-1.5 rounded-full bg-black/20 hover:bg-gold/60 transition-all cursor-pointer" aria-label="Go to Stage 4"></button>
+            <button type="button" onclick="scrollProcessSlide(0)" class="process-dot w-6 h-1.5 rounded-full bg-gold transition-all cursor-pointer" aria-label="Go to Stage 1"></button>
+            <button type="button" onclick="scrollProcessSlide(1)" class="process-dot w-2 h-1.5 rounded-full bg-black/20 hover:bg-gold/60 transition-all cursor-pointer" aria-label="Go to Stage 2"></button>
+            <button type="button" onclick="scrollProcessSlide(2)" class="process-dot w-2 h-1.5 rounded-full bg-black/20 hover:bg-gold/60 transition-all cursor-pointer" aria-label="Go to Stage 3"></button>
+            <button type="button" onclick="scrollProcessSlide(3)" class="process-dot w-2 h-1.5 rounded-full bg-black/20 hover:bg-gold/60 transition-all cursor-pointer" aria-label="Go to Stage 4"></button>
           </div>
 
           <!-- Navigation Arrow Pills -->
           <div class="flex items-center gap-2">
             <button 
+              type="button" 
               onclick="stepProcessSlide(-1)" 
-              class="w-8 h-8 rounded-full bg-white border border-black/10 text-midnight flex items-center justify-center font-bold text-xs shadow-sm hover:border-gold hover:text-gold transition active:scale-90 cursor-pointer"
+              class="w-11 h-11 min-w-[44px] min-h-[44px] rounded-full bg-white border border-black/10 text-midnight flex items-center justify-center font-bold text-sm shadow-sm hover:border-gold hover:text-gold transition active:scale-90 cursor-pointer"
               aria-label="Previous Stage"
             >
               ←
             </button>
             <button 
+              type="button" 
               onclick="stepProcessSlide(1)" 
-              class="w-8 h-8 rounded-full bg-white border border-black/10 text-midnight flex items-center justify-center font-bold text-xs shadow-sm hover:border-gold hover:text-gold transition active:scale-90 cursor-pointer"
+              class="w-11 h-11 min-w-[44px] min-h-[44px] rounded-full bg-white border border-black/10 text-midnight flex items-center justify-center font-bold text-sm shadow-sm hover:border-gold hover:text-gold transition active:scale-90 cursor-pointer"
               aria-label="Next Stage"
             >
               →
@@ -3077,7 +3262,7 @@ style="display:none;visibility:hidden"></iframe>
           <div class="flex items-start gap-4 p-5 rounded-2xl bg-warmivory/60 border border-black/[0.04] hover:border-gold/40 hover:bg-white hover:shadow-md transition-all duration-300 group">
             <div class="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-700 flex items-center justify-center font-bold text-base shrink-0 group-hover:scale-110 transition-transform">✓</div>
             <div>
-              <h5 class="font-bold text-midnight text-sm">Reliable Sourcing</h5>
+              <h4 class="font-bold text-midnight text-sm">Reliable Sourcing</h4>
               <p class="text-stategrey text-xs mt-1 leading-relaxed">Verified partner network of farmers, manufacturers, wholesalers, and direct primary exporters across South India.</p>
             </div>
           </div>
@@ -3085,7 +3270,7 @@ style="display:none;visibility:hidden"></iframe>
           <div class="flex items-start gap-4 p-5 rounded-2xl bg-warmivory/60 border border-black/[0.04] hover:border-gold/40 hover:bg-white hover:shadow-md transition-all duration-300 group">
             <div class="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-700 flex items-center justify-center font-bold text-base shrink-0 group-hover:scale-110 transition-transform">✓</div>
             <div>
-              <h5 class="font-bold text-midnight text-sm">Quality Focus</h5>
+              <h4 class="font-bold text-midnight text-sm">Quality Focus</h4>
               <p class="text-stategrey text-xs mt-1 leading-relaxed">Pre-shipment batch inspection, phytosanitary conformance, and strict adherence to international buyer specifications.</p>
             </div>
           </div>
@@ -3093,7 +3278,7 @@ style="display:none;visibility:hidden"></iframe>
           <div class="flex items-start gap-4 p-5 rounded-2xl bg-warmivory/60 border border-black/[0.04] hover:border-gold/40 hover:bg-white hover:shadow-md transition-all duration-300 group">
             <div class="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-700 flex items-center justify-center font-bold text-base shrink-0 group-hover:scale-110 transition-transform">✓</div>
             <div>
-              <h5 class="font-bold text-midnight text-sm">Competitive Pricing</h5>
+              <h4 class="font-bold text-midnight text-sm">Competitive Pricing</h4>
               <p class="text-stategrey text-xs mt-1 leading-relaxed">Direct farm-gate and mill sourcing without intermediate distributor layers to maintain high commercial value.</p>
             </div>
           </div>
@@ -3101,7 +3286,7 @@ style="display:none;visibility:hidden"></iframe>
           <div class="flex items-start gap-4 p-5 rounded-2xl bg-warmivory/60 border border-black/[0.04] hover:border-gold/40 hover:bg-white hover:shadow-md transition-all duration-300 group">
             <div class="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-700 flex items-center justify-center font-bold text-base shrink-0 group-hover:scale-110 transition-transform">✓</div>
             <div>
-              <h5 class="font-bold text-midnight text-sm">End-to-End Coordination</h5>
+              <h4 class="font-bold text-midnight text-sm">End-to-End Coordination</h4>
               <p class="text-stategrey text-xs mt-1 leading-relaxed">Handling every operational link from supplier procurement, phytosanitary filings down to port delivery and ocean bill of lading.</p>
             </div>
           </div>
@@ -3109,7 +3294,7 @@ style="display:none;visibility:hidden"></iframe>
           <div class="flex items-start gap-4 p-5 rounded-2xl bg-warmivory/60 border border-black/[0.04] hover:border-gold/40 hover:bg-white hover:shadow-md transition-all duration-300 group">
             <div class="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-700 flex items-center justify-center font-bold text-base shrink-0 group-hover:scale-110 transition-transform">✓</div>
             <div>
-              <h5 class="font-bold text-midnight text-sm">Customer-Centric Focus</h5>
+              <h4 class="font-bold text-midnight text-sm">Customer-Centric Focus</h4>
               <p class="text-stategrey text-xs mt-1 leading-relaxed">Tailored freight schedules built around overseas buyer delivery timelines, export packaging, and flexible consignment sizes.</p>
             </div>
           </div>
@@ -3117,7 +3302,7 @@ style="display:none;visibility:hidden"></iframe>
           <div class="flex items-start gap-4 p-5 rounded-2xl bg-warmivory/60 border border-black/[0.04] hover:border-gold/40 hover:bg-white hover:shadow-md transition-all duration-300 group">
             <div class="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-700 flex items-center justify-center font-bold text-base shrink-0 group-hover:scale-110 transition-transform">✓</div>
             <div>
-              <h5 class="font-bold text-midnight text-sm">Global Connectivity</h5>
+              <h4 class="font-bold text-midnight text-sm">Global Connectivity</h4>
               <p class="text-stategrey text-xs mt-1 leading-relaxed">Connecting the vibrant Indian export market seamlessly with verified buyers across Southeast Asia, the Middle East, Europe, and the Americas.</p>
             </div>
           </div>
@@ -3190,7 +3375,7 @@ style="display:none;visibility:hidden"></iframe>
 
           <!-- Interactive Telemetry Controls -->
           <div class="flex flex-wrap items-center gap-2">
-            <button 
+            <button type="button" 
               id="btnToggleDots" 
               onclick="toggleConnectingDots()" 
               class="px-3.5 py-1.5 rounded-full bg-white hover:bg-white/90 text-charcoal font-semibold text-xs border border-black/10 shadow-sm flex items-center gap-1.5 transition-all cursor-pointer active:scale-95"
@@ -3200,7 +3385,7 @@ style="display:none;visibility:hidden"></iframe>
               <span id="dotsText">Trade Corridors Active</span>
             </button>
 
-            <button 
+            <button type="button" 
               onclick="centerOnIndiaHub()" 
               class="px-3.5 py-1.5 rounded-full bg-white hover:bg-white/90 text-charcoal font-semibold text-xs border border-black/10 shadow-sm flex items-center gap-1.5 transition-all cursor-pointer active:scale-95"
               title="Center on Chennai Operations Hub"
@@ -3209,7 +3394,7 @@ style="display:none;visibility:hidden"></iframe>
               <span>Center Operations Hub</span>
             </button>
 
-            <button 
+            <button type="button" 
               onclick="resetGoogleMapZoom()" 
               class="px-3.5 py-1.5 rounded-full bg-white hover:bg-white/90 text-charcoal font-semibold text-xs border border-black/10 shadow-sm flex items-center gap-1.5 transition-all cursor-pointer active:scale-95"
               title="Reset to Full Global Extent"
@@ -3223,28 +3408,28 @@ style="display:none;visibility:hidden"></iframe>
         <!-- Port Quick-Selection UN/LOCODE Filter Bar -->
         <div class="flex items-center gap-2 overflow-x-auto pb-3 mb-4 scrollbar-none text-xs">
           <span class="text-stategrey font-bold text-[10px] uppercase tracking-wider shrink-0 mr-1 font-mono">PORT SELECTION:</span>
-          <button data-city-pill="chennai" onclick="focusGoogleMapCity('chennai')" class="city-pill font-mono px-3 py-1 rounded-full bg-midnight text-white border border-midnight font-bold transition-all shrink-0 text-[11px]">
+          <button type="button" data-city-pill="chennai" onclick="focusGoogleMapCity('chennai')" class="city-pill font-mono px-3 py-1 rounded-full bg-midnight text-white border border-midnight font-bold transition-all shrink-0 text-[11px]">
             IN-MAA • CHENNAI (HUB)
           </button>
-          <button data-city-pill="dubai" onclick="focusGoogleMapCity('dubai')" class="city-pill font-mono px-3 py-1 rounded-full bg-white text-charcoal border border-black/10 font-semibold hover:border-gold hover:text-gold transition-all shrink-0 text-[11px]">
+          <button type="button" data-city-pill="dubai" onclick="focusGoogleMapCity('dubai')" class="city-pill font-mono px-3 py-1 rounded-full bg-white text-charcoal border border-black/10 font-semibold hover:border-gold hover:text-gold transition-all shrink-0 text-[11px]">
             AE-JEA • DUBAI
           </button>
-          <button data-city-pill="singapore" onclick="focusGoogleMapCity('singapore')" class="city-pill font-mono px-3 py-1 rounded-full bg-white text-charcoal border border-black/10 font-semibold hover:border-gold hover:text-gold transition-all shrink-0 text-[11px]">
+          <button type="button" data-city-pill="singapore" onclick="focusGoogleMapCity('singapore')" class="city-pill font-mono px-3 py-1 rounded-full bg-white text-charcoal border border-black/10 font-semibold hover:border-gold hover:text-gold transition-all shrink-0 text-[11px]">
             SG-SIN • SINGAPORE
           </button>
-          <button data-city-pill="rotterdam" onclick="focusGoogleMapCity('rotterdam')" class="city-pill font-mono px-3 py-1 rounded-full bg-white text-charcoal border border-black/10 font-semibold hover:border-gold hover:text-gold transition-all shrink-0 text-[11px]">
+          <button type="button" data-city-pill="rotterdam" onclick="focusGoogleMapCity('rotterdam')" class="city-pill font-mono px-3 py-1 rounded-full bg-white text-charcoal border border-black/10 font-semibold hover:border-gold hover:text-gold transition-all shrink-0 text-[11px]">
             NL-RTM • ROTTERDAM
           </button>
-          <button data-city-pill="london" onclick="focusGoogleMapCity('london')" class="city-pill font-mono px-3 py-1 rounded-full bg-white text-charcoal border border-black/10 font-semibold hover:border-gold hover:text-gold transition-all shrink-0 text-[11px]">
+          <button type="button" data-city-pill="london" onclick="focusGoogleMapCity('london')" class="city-pill font-mono px-3 py-1 rounded-full bg-white text-charcoal border border-black/10 font-semibold hover:border-gold hover:text-gold transition-all shrink-0 text-[11px]">
             GB-LGP • LONDON
           </button>
-          <button data-city-pill="newyork" onclick="focusGoogleMapCity('newyork')" class="city-pill font-mono px-3 py-1 rounded-full bg-white text-charcoal border border-black/10 font-semibold hover:border-gold hover:text-gold transition-all shrink-0 text-[11px]">
+          <button type="button" data-city-pill="newyork" onclick="focusGoogleMapCity('newyork')" class="city-pill font-mono px-3 py-1 rounded-full bg-white text-charcoal border border-black/10 font-semibold hover:border-gold hover:text-gold transition-all shrink-0 text-[11px]">
             US-NYC • NEW YORK
           </button>
-          <button data-city-pill="tokyo" onclick="focusGoogleMapCity('tokyo')" class="city-pill font-mono px-3 py-1 rounded-full bg-white text-charcoal border border-black/10 font-semibold hover:border-gold hover:text-gold transition-all shrink-0 text-[11px]">
+          <button type="button" data-city-pill="tokyo" onclick="focusGoogleMapCity('tokyo')" class="city-pill font-mono px-3 py-1 rounded-full bg-white text-charcoal border border-black/10 font-semibold hover:border-gold hover:text-gold transition-all shrink-0 text-[11px]">
             JP-TYO • TOKYO
           </button>
-          <button data-city-pill="sydney" onclick="focusGoogleMapCity('sydney')" class="city-pill font-mono px-3 py-1 rounded-full bg-white text-charcoal border border-black/10 font-semibold hover:border-gold hover:text-gold transition-all shrink-0 text-[11px]">
+          <button type="button" data-city-pill="sydney" onclick="focusGoogleMapCity('sydney')" class="city-pill font-mono px-3 py-1 rounded-full bg-white text-charcoal border border-black/10 font-semibold hover:border-gold hover:text-gold transition-all shrink-0 text-[11px]">
             AU-SYD • SYDNEY
           </button>
         </div>
@@ -3372,12 +3557,19 @@ style="display:none;visibility:hidden"></iframe>
 <section id="projects" class="py-24 text-white relative overflow-hidden border-t border-b border-gold/20">
     <!-- Professional Maritime Photographic Background with Cinematic Shading -->
     <div class="absolute inset-0 z-0 overflow-hidden pointer-events-none">
-      <img 
-        src="assets/ocean-port.jpg" 
-        alt="RSK Traders Global Maritime Trade and Cargo Port" 
-        class="w-full h-full object-cover object-center filter brightness-[0.25] contrast-[1.15] scale-105"
-        onerror="this.onerror=null; this.src='assets/aerial-cargo.jpg';"
-      >
+      <picture class="w-full h-full block">
+        <source srcset="assets/ocean-port.webp" type="image/webp">
+        <img 
+          loading="lazy"
+          decoding="async"
+          width="1007"
+          height="547"
+          src="assets/ocean-port.jpg" 
+          alt="RSK Traders Global Maritime Trade and Cargo Port" 
+          class="w-full h-full object-cover object-center filter brightness-[0.25] contrast-[1.15] scale-105"
+          onerror="this.onerror=null; this.src='assets/aerial-cargo.jpg';"
+        >
+      </picture>
       <!-- Deep Cinematic Charcoal Grey Gradient Overlay for High-End Contrast -->
       <div class="absolute inset-0 bg-gradient-to-b from-[#0D1015]/95 via-[#141820]/90 to-[#0D1015]/96"></div>
       <!-- Soft Champagne Gold Spotlights -->
@@ -3693,7 +3885,7 @@ style="display:none;visibility:hidden"></iframe>
               <!-- Row 1: Full Name & Company Name -->
               <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label class="block text-[11px] font-bold text-midnight tracking-wider uppercase mb-1.5 flex items-center justify-between">
+                  <label for="contactName" class="block text-[11px] font-bold text-midnight tracking-wider uppercase mb-1.5 flex items-center justify-between">
                     <span>Full Name</span>
                     <span class="text-gold font-bold">*</span>
                   </label>
@@ -3705,7 +3897,8 @@ style="display:none;visibility:hidden"></iframe>
                     </div>
                     <input 
                       type="text" 
-                      id="contactName" 
+                      id="contactName"
+                      name="contactName" 
                       required 
                       placeholder="e.g. Rajesh Kumar / John Smith" 
                       class="w-full bg-[#FAF9F5] hover:bg-white focus:bg-white border border-[#E7EAF0] focus:border-gold rounded-xl pl-10 pr-3.5 py-2.5 text-xs text-charcoal placeholder-stategrey/50 focus:outline-none focus:ring-4 focus:ring-gold/15 transition-all duration-200 shadow-sm"
@@ -3713,7 +3906,7 @@ style="display:none;visibility:hidden"></iframe>
                   </div>
                 </div>
                 <div>
-                  <label class="block text-[11px] font-bold text-midnight tracking-wider uppercase mb-1.5 flex items-center justify-between">
+                  <label for="contactCompany" class="block text-[11px] font-bold text-midnight tracking-wider uppercase mb-1.5 flex items-center justify-between">
                     <span>Company Name</span>
                     <span class="text-gold font-bold">*</span>
                   </label>
@@ -3725,7 +3918,8 @@ style="display:none;visibility:hidden"></iframe>
                     </div>
                     <input 
                       type="text" 
-                      id="contactCompany" 
+                      id="contactCompany"
+                      name="contactCompany" 
                       required 
                       placeholder="e.g. Al-Mansoor General Trading LLC" 
                       class="w-full bg-[#FAF9F5] hover:bg-white focus:bg-white border border-[#E7EAF0] focus:border-gold rounded-xl pl-10 pr-3.5 py-2.5 text-xs text-charcoal placeholder-stategrey/50 focus:outline-none focus:ring-4 focus:ring-gold/15 transition-all duration-200 shadow-sm"
@@ -3737,7 +3931,7 @@ style="display:none;visibility:hidden"></iframe>
               <!-- Row 2: Business Email & Phone Number -->
               <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label class="block text-[11px] font-bold text-midnight tracking-wider uppercase mb-1.5 flex items-center justify-between">
+                  <label for="contactEmail" class="block text-[11px] font-bold text-midnight tracking-wider uppercase mb-1.5 flex items-center justify-between">
                     <span>Business Email</span>
                     <span class="text-gold font-bold">*</span>
                   </label>
@@ -3749,7 +3943,8 @@ style="display:none;visibility:hidden"></iframe>
                     </div>
                     <input 
                       type="email" 
-                      id="contactEmail" 
+                      id="contactEmail"
+                      name="contactEmail" 
                       required 
                       placeholder="purchasing@company.com" 
                       class="w-full bg-[#FAF9F5] hover:bg-white focus:bg-white border border-[#E7EAF0] focus:border-gold rounded-xl pl-10 pr-3.5 py-2.5 text-xs text-charcoal placeholder-stategrey/50 focus:outline-none focus:ring-4 focus:ring-gold/15 transition-all duration-200 shadow-sm"
@@ -3757,7 +3952,7 @@ style="display:none;visibility:hidden"></iframe>
                   </div>
                 </div>
                 <div>
-                  <label class="block text-[11px] font-bold text-midnight tracking-wider uppercase mb-1.5 flex items-center justify-between">
+                  <label for="contactPhone" class="block text-[11px] font-bold text-midnight tracking-wider uppercase mb-1.5 flex items-center justify-between">
                     <span>Phone Number (with Country Code)</span>
                     <span class="text-gold font-bold">*</span>
                   </label>
@@ -3769,7 +3964,8 @@ style="display:none;visibility:hidden"></iframe>
                     </div>
                     <input 
                       type="tel" 
-                      id="contactPhone" 
+                      id="contactPhone"
+                      name="contactPhone" 
                       required 
                       placeholder="+971 50 ... / +91 ..." 
                       class="w-full bg-[#FAF9F5] hover:bg-white focus:bg-white border border-[#E7EAF0] focus:border-gold rounded-xl pl-10 pr-3.5 py-2.5 text-xs text-charcoal placeholder-stategrey/50 focus:outline-none focus:ring-4 focus:ring-gold/15 transition-all duration-200 shadow-sm"
@@ -3781,7 +3977,7 @@ style="display:none;visibility:hidden"></iframe>
               <!-- Row 3: Service, Origin & Destination -->
               <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
                 <div>
-                  <label class="block text-[11px] font-bold text-midnight tracking-wider uppercase mb-1.5 flex items-center justify-between">
+                  <label for="serviceSelect" class="block text-[11px] font-bold text-midnight tracking-wider uppercase mb-1.5 flex items-center justify-between">
                     <span>Service Required</span>
                     <span class="text-gold font-bold">*</span>
                   </label>
@@ -3792,7 +3988,8 @@ style="display:none;visibility:hidden"></iframe>
                       </svg>
                     </div>
                     <select 
-                      id="serviceSelect" 
+                      id="serviceSelect"
+                      name="serviceSelect" 
                       class="w-full bg-[#FAF9F5] hover:bg-white focus:bg-white border border-[#E7EAF0] focus:border-gold rounded-xl pl-10 pr-3 py-2.5 text-xs text-charcoal focus:outline-none focus:ring-4 focus:ring-gold/15 transition-all duration-200 shadow-sm cursor-pointer"
                     >
                       <option value="Export Services from India">Export from India</option>
@@ -3805,7 +4002,7 @@ style="display:none;visibility:hidden"></iframe>
                   </div>
                 </div>
                 <div>
-                  <label class="block text-[11px] font-bold text-midnight tracking-wider uppercase mb-1.5 flex items-center justify-between">
+                  <label for="contactOrigin" class="block text-[11px] font-bold text-midnight tracking-wider uppercase mb-1.5 flex items-center justify-between">
                     <span>Origin</span>
                     <span class="text-gold font-bold">*</span>
                   </label>
@@ -3818,7 +4015,8 @@ style="display:none;visibility:hidden"></iframe>
                     </div>
                     <input 
                       type="text" 
-                      id="contactOrigin" 
+                      id="contactOrigin"
+                      name="contactOrigin" 
                       required 
                       placeholder="e.g. India (Tamil Nadu)" 
                       class="w-full bg-[#FAF9F5] hover:bg-white focus:bg-white border border-[#E7EAF0] focus:border-gold rounded-xl pl-10 pr-3.5 py-2.5 text-xs text-charcoal placeholder-stategrey/50 focus:outline-none focus:ring-4 focus:ring-gold/15 transition-all duration-200 shadow-sm"
@@ -3826,7 +4024,7 @@ style="display:none;visibility:hidden"></iframe>
                   </div>
                 </div>
                 <div>
-                  <label class="block text-[11px] font-bold text-midnight tracking-wider uppercase mb-1.5 flex items-center justify-between">
+                  <label for="contactDestination" class="block text-[11px] font-bold text-midnight tracking-wider uppercase mb-1.5 flex items-center justify-between">
                     <span>Destination</span>
                     <span class="text-gold font-bold">*</span>
                   </label>
@@ -3838,7 +4036,8 @@ style="display:none;visibility:hidden"></iframe>
                     </div>
                     <input 
                       type="text" 
-                      id="contactDestination" 
+                      id="contactDestination"
+                      name="contactDestination" 
                       required 
                       placeholder="e.g. Dubai, UAE / UK" 
                       class="w-full bg-[#FAF9F5] hover:bg-white focus:bg-white border border-[#E7EAF0] focus:border-gold rounded-xl pl-10 pr-3.5 py-2.5 text-xs text-charcoal placeholder-stategrey/50 focus:outline-none focus:ring-4 focus:ring-gold/15 transition-all duration-200 shadow-sm"
@@ -3849,7 +4048,7 @@ style="display:none;visibility:hidden"></iframe>
 
               <!-- Row 4: Product or Cargo Details -->
               <div>
-                <label class="block text-[11px] font-bold text-midnight tracking-wider uppercase mb-1.5 flex items-center justify-between">
+                <label for="contactCargo" class="block text-[11px] font-bold text-midnight tracking-wider uppercase mb-1.5 flex items-center justify-between">
                   <span>Product or Cargo Details</span>
                   <span class="text-gold font-bold">*</span>
                 </label>
@@ -3861,7 +4060,8 @@ style="display:none;visibility:hidden"></iframe>
                   </div>
                   <input 
                     type="text" 
-                    id="contactCargo" 
+                    id="contactCargo"
+                    name="contactCargo" 
                     required 
                     placeholder="e.g. Fresh Drumsticks 5 Metric Tons / Ponni Rice 2x20ft FCL" 
                     class="w-full bg-[#FAF9F5] hover:bg-white focus:bg-white border border-[#E7EAF0] focus:border-gold rounded-xl pl-10 pr-3.5 py-2.5 text-xs text-charcoal placeholder-stategrey/50 focus:outline-none focus:ring-4 focus:ring-gold/15 transition-all duration-200 shadow-sm"
@@ -3871,7 +4071,7 @@ style="display:none;visibility:hidden"></iframe>
 
               <!-- Row 5: Message & Target Commercial Terms -->
               <div>
-                <label class="block text-[11px] font-bold text-midnight tracking-wider uppercase mb-1.5">
+                <label for="contactMessage" class="block text-[11px] font-bold text-midnight tracking-wider uppercase mb-1.5">
                   Message & Target Commercial Terms
                 </label>
                 <div class="relative group">
@@ -3881,7 +4081,8 @@ style="display:none;visibility:hidden"></iframe>
                     </svg>
                   </div>
                   <textarea 
-                    id="contactMessage" 
+                    id="contactMessage"
+                    name="contactMessage" 
                     rows="3" 
                     placeholder="Specify packaging preferences, CIF/FOB delivery terms, target delivery timeframe, or any special documentation requirements..." 
                     class="w-full bg-[#FAF9F5] hover:bg-white focus:bg-white border border-[#E7EAF0] focus:border-gold rounded-xl pl-10 pr-3.5 py-2.5 text-xs text-charcoal placeholder-stategrey/50 focus:outline-none focus:ring-4 focus:ring-gold/15 transition-all duration-200 shadow-sm resize-none"
@@ -3938,7 +4139,18 @@ style="display:none;visibility:hidden"></iframe>
         <!-- Column 1: Brand & Tagline -->
         <div class="space-y-3">
           <div class="flex items-center gap-3">
-            <img loading="lazy" src="assets/logo.jpg" alt="RSK Traders Import and Export Company Logo" class="w-8 h-8 rounded-full border border-white/20 bg-white object-contain p-0.5">
+            <picture>
+              <source srcset="assets/logo.webp" type="image/webp">
+              <img 
+                loading="lazy" 
+                decoding="async" 
+                width="1016" 
+                height="1024" 
+                src="assets/logo.jpg" 
+                alt="RSK Traders Import and Export Company Logo" 
+                class="w-8 h-8 rounded-full border border-white/20 bg-white object-contain p-0.5"
+              >
+            </picture>
             <span class="footer-heading font-sans font-semibold text-[17px] text-white tracking-wider">RSK TRADERS</span>
           </div>
           <p style="color: #FFFFFF !important;" class="small-label text-white uppercase tracking-wider text-[11px]">
@@ -4015,8 +4227,9 @@ style="display:none;visibility:hidden"></iframe>
       <div class="p-6 sm:p-8">
         <!-- Close Button (Refined Circular Pill with SVG Icon) -->
         <button 
+          type="button" 
           onclick="closeQuoteModal()" 
-          class="absolute top-5 right-5 w-9 h-9 rounded-full bg-black/[0.04] hover:bg-gold/20 text-midnight hover:text-gold flex items-center justify-center transition-all duration-200 border border-black/5 hover:border-gold/40 shadow-sm cursor-pointer"
+          class="absolute top-5 right-5 w-11 h-11 min-w-[44px] min-h-[44px] rounded-full bg-black/[0.04] hover:bg-gold/20 text-midnight hover:text-gold flex items-center justify-center transition-all duration-200 border border-black/5 hover:border-gold/40 shadow-sm cursor-pointer"
           aria-label="Close modal"
         >
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -4043,7 +4256,7 @@ style="display:none;visibility:hidden"></iframe>
           
           <!-- Service / Product Needed -->
           <div>
-            <label class="block text-[11px] font-bold text-midnight tracking-wider uppercase mb-1.5 flex items-center justify-between">
+            <label for="modalServiceInput" class="block text-[11px] font-bold text-midnight tracking-wider uppercase mb-1.5 flex items-center justify-between">
               <span>Service / Product Needed</span>
               <span class="text-gold font-bold">*</span>
             </label>
@@ -4055,7 +4268,8 @@ style="display:none;visibility:hidden"></iframe>
               </div>
               <input 
                 type="text" 
-                id="modalServiceInput" 
+                id="modalServiceInput"
+                name="modalServiceInput" 
                 required 
                 placeholder="e.g. Fresh Vegetables Export to UAE / Air Freight" 
                 class="w-full bg-[#FAF9F5] hover:bg-white focus:bg-white border border-[#E7EAF0] focus:border-gold rounded-xl pl-10 pr-3.5 py-2.5 text-xs text-charcoal placeholder-stategrey/50 focus:outline-none focus:ring-4 focus:ring-gold/15 transition-all duration-200 shadow-sm"
@@ -4066,7 +4280,7 @@ style="display:none;visibility:hidden"></iframe>
           <!-- Name & Phone Grid -->
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
             <div>
-              <label class="block text-[11px] font-bold text-midnight tracking-wider uppercase mb-1.5 flex items-center justify-between">
+              <label for="modalName" class="block text-[11px] font-bold text-midnight tracking-wider uppercase mb-1.5 flex items-center justify-between">
                 <span>Your Full Name</span>
                 <span class="text-gold font-bold">*</span>
               </label>
@@ -4078,7 +4292,8 @@ style="display:none;visibility:hidden"></iframe>
                 </div>
                 <input 
                   type="text" 
-                  id="modalName" 
+                  id="modalName"
+                  name="modalName" 
                   required 
                   placeholder="Name" 
                   class="w-full bg-[#FAF9F5] hover:bg-white focus:bg-white border border-[#E7EAF0] focus:border-gold rounded-xl pl-10 pr-3.5 py-2.5 text-xs text-charcoal placeholder-stategrey/50 focus:outline-none focus:ring-4 focus:ring-gold/15 transition-all duration-200 shadow-sm"
@@ -4086,7 +4301,7 @@ style="display:none;visibility:hidden"></iframe>
               </div>
             </div>
             <div>
-              <label class="block text-[11px] font-bold text-midnight tracking-wider uppercase mb-1.5 flex items-center justify-between">
+              <label for="modalPhone" class="block text-[11px] font-bold text-midnight tracking-wider uppercase mb-1.5 flex items-center justify-between">
                 <span>Contact Phone / WhatsApp</span>
                 <span class="text-gold font-bold">*</span>
               </label>
@@ -4098,7 +4313,8 @@ style="display:none;visibility:hidden"></iframe>
                 </div>
                 <input 
                   type="tel" 
-                  id="modalPhone" 
+                  id="modalPhone"
+                  name="modalPhone" 
                   required 
                   placeholder="+91..." 
                   class="w-full bg-[#FAF9F5] hover:bg-white focus:bg-white border border-[#E7EAF0] focus:border-gold rounded-xl pl-10 pr-3.5 py-2.5 text-xs text-charcoal placeholder-stategrey/50 focus:outline-none focus:ring-4 focus:ring-gold/15 transition-all duration-200 shadow-sm"
@@ -4109,7 +4325,7 @@ style="display:none;visibility:hidden"></iframe>
 
           <!-- Email Address -->
           <div>
-            <label class="block text-[11px] font-bold text-midnight tracking-wider uppercase mb-1.5 flex items-center justify-between">
+            <label for="modalEmail" class="block text-[11px] font-bold text-midnight tracking-wider uppercase mb-1.5 flex items-center justify-between">
               <span>Corporate / Personal Email</span>
               <span class="text-gold font-bold">*</span>
             </label>
@@ -4121,7 +4337,8 @@ style="display:none;visibility:hidden"></iframe>
               </div>
               <input 
                 type="email" 
-                id="modalEmail" 
+                id="modalEmail"
+                name="modalEmail" 
                 required 
                 placeholder="name@company.com" 
                 class="w-full bg-[#FAF9F5] hover:bg-white focus:bg-white border border-[#E7EAF0] focus:border-gold rounded-xl pl-10 pr-3.5 py-2.5 text-xs text-charcoal placeholder-stategrey/50 focus:outline-none focus:ring-4 focus:ring-gold/15 transition-all duration-200 shadow-sm"
@@ -4131,7 +4348,7 @@ style="display:none;visibility:hidden"></iframe>
 
           <!-- Requirement Overview -->
           <div>
-            <label class="block text-[11px] font-bold text-midnight tracking-wider uppercase mb-1.5 flex items-center justify-between">
+            <label for="modalMessage" class="block text-[11px] font-bold text-midnight tracking-wider uppercase mb-1.5 flex items-center justify-between">
               <span>Requirement Overview</span>
               <span class="text-stategrey font-normal text-[10px] lowercase">(optional)</span>
             </label>
@@ -4142,7 +4359,8 @@ style="display:none;visibility:hidden"></iframe>
                 </svg>
               </div>
               <textarea 
-                id="modalMessage" 
+                id="modalMessage"
+                name="modalMessage" 
                 rows="3" 
                 placeholder="Quantities, grade specifications, delivery port..." 
                 class="w-full bg-[#FAF9F5] hover:bg-white focus:bg-white border border-[#E7EAF0] focus:border-gold rounded-xl pl-10 pr-3.5 py-2.5 text-xs text-charcoal placeholder-stategrey/50 focus:outline-none focus:ring-4 focus:ring-gold/15 transition-all duration-200 shadow-sm resize-none"
@@ -4185,7 +4403,7 @@ style="display:none;visibility:hidden"></iframe>
   </div>
 
   <!-- Leaflet Map JS -->
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script defer src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
   <!-- MAIN SCRIPT CONTROLLERS -->
   <script>
@@ -4514,6 +4732,10 @@ style="display:none;visibility:hidden"></iframe>
     ];
 
     function initGoogle2DMap() {
+      if (typeof L === 'undefined') {
+        window.addEventListener('load', () => setTimeout(initGoogle2DMap, 100));
+        return;
+      }
       const mapContainer = document.getElementById('google2DMap');
       if (!mapContainer || google2DMapInstance) return;
 
