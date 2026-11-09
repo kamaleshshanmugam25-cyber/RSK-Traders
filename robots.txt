@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+# Disallow archive files
+Disallow: /*.zip$
+
+# Reference Sitemap
+Sitemap: https://rsktraders.co.in/sitemap.xml
